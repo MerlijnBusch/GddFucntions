@@ -25,3 +25,4 @@ Route::resource('story', 'StoryController');
 
 Route::post('/ajax-metric-update','MetricController@ajaxMetric')->name('ajax-metric-update');
 Route::post('/ajax-story-search','StoryController@ajaxSearch')->name('ajax-story-search');
+//test
