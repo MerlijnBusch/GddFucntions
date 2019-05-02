@@ -49,6 +49,7 @@ class StoryController extends Controller
         $story = new Story;
         $story->title = $validated['title_make_story'];
         $story->body = $validated['about'];
+        $story->user_id = auth()->user()->id;
         $story->metric_belonging_to_story = $validated['story_add_metric_to_story_hidden'];
         $story->accepted = Story::PENDING;
         $story->save();

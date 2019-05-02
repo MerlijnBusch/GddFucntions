@@ -21,6 +21,7 @@
 @section('content')
 
 {{$user->name}}
+{{$story["0"]->title}}
 
 @endsection
 

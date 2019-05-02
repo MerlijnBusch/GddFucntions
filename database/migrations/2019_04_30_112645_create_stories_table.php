@@ -18,6 +18,7 @@ class CreateStoriesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->text('metric_belonging_to_story')->nullable();
+            $table->bigInteger('user_id');
             $table->string('accepted')->default('false');
             $table->timestamps();
         });
