@@ -9,4 +9,10 @@ class Story extends Model
     const ACCEPTED = 'true';
     const PENDING = 'false';
     //
+    public function user()
+    {
+
+        $this->hasOne('App\User');
+
+    }
 }

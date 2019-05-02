@@ -13,12 +13,17 @@ class User extends Authenticatable
     const ADMIN_TYPE = 'admin';
     const MODERATOR_TYPE = 'moderator';
     const DEFAULT_TYPE = 'default';
+
     public function isAdmin()    {
+
         return $this->type === self::ADMIN_TYPE;
+
     }
 
     public function isModerator()    {
+
         return $this->type === self::MODERATOR_TYPE;
+        
     }
 
 
@@ -48,4 +53,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function story()
+    {
+
+        $this->hasMany('App\Story');
+
+    }
 }
