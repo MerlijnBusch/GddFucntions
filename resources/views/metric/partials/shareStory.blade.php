@@ -23,10 +23,15 @@
                 </div>
             </div>
             <input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">
+            <input type="hidden" id="story_add_body_to_story_hidden_json" name="story_add_body_to_story_hidden_json">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <button class="btn btn-success box--shadow" type="submit" onclick="submit_form()">Save Profile</button>
+
+
+                        <button class="btn btn-success box--shadow" type="button" onclick="submit_form()">Save Profile</button>
+
+
                     </div>
                 </div>
                 <div class="col-6">

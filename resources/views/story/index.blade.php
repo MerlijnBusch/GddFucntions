@@ -54,7 +54,6 @@
                     document.getElementById('insert-stories-here').innerHTML = '';
                     let data = response.message;
                     for(let i = 0; i < data.length; i++){
-                        console.log(data[i]);
                         let dataDisplay =
                             "<div>" +
                             "<h2>Title: " + data[i].title + "</h2>" +

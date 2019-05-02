@@ -17,6 +17,7 @@ class CreateStoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('body');
+            $table->text('body_json');
             $table->text('metric_belonging_to_story')->nullable();
             $table->bigInteger('user_id');
             $table->string('accepted')->default('false');

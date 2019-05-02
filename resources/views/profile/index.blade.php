@@ -21,7 +21,16 @@
 @section('content')
 
 {{$user->name}}
-{{$story["0"]->title}}
+@forelse($story as $story)
+    {{$story->title}}<br>
+    {{$story->body}}
+    <br>
+    <br>
+@empty
+
+    <p>no stories found</p>
+
+@endforelse
 
 @endsection
 

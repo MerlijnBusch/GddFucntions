@@ -166,6 +166,7 @@
         function submit_form() {
             let about = document.querySelector('input[name=about]');
             about.value = quill.root.innerHTML;
+            $('input[name=story_add_body_to_story_hidden_json]').val(JSON.stringify(quill.getContents()));
             document.getElementById('form_make_story').submit();
         }
     </script>
