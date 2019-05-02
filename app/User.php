@@ -23,7 +23,7 @@ class User extends Authenticatable
     public function isModerator()    {
 
         return $this->type === self::MODERATOR_TYPE;
-        
+
     }
 
 
@@ -59,5 +59,10 @@ class User extends Authenticatable
 
         $this->hasMany('App\Story');
 
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 }

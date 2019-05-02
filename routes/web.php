@@ -32,3 +32,5 @@ Route::get('/admin', 'Admin\AdminController@index')
 Route::get('/moderator', 'Moderator\ModeratorController@index')
     ->middleware('is_moderator')
     ->name('moderator.index');
+
+Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');
