@@ -44,7 +44,7 @@ class StoryController extends Controller
         $validated = $request->validate([
             'title_make_story' => 'required|min:5|max:150',
             'about' => 'required|min:100',
-            'story_add_metric_to_story_hidden' => 'nullable',
+            'story_add_metric_to_story_hidden' => 'nullable'
         ]);
 
         $story = new Story;
@@ -78,7 +78,7 @@ class StoryController extends Controller
      */
     public function edit(Story $story)
     {
-        //
+        return 'edit';
     }
 
     /**
@@ -101,7 +101,7 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
-        //
+        return $story;
     }
 
     public function ajaxSearch()
@@ -116,5 +116,10 @@ class StoryController extends Controller
         } else {
             return response()->json(['status' => 'fail', 'message' => 'an error occurred']);
         }
+    }
+
+    public function share(Story $story)
+    {
+        return 'share';
     }
 }

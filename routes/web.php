@@ -34,3 +34,4 @@ Route::get('/moderator', 'Moderator\ModeratorController@index')
     ->name('moderator.index');
 
 Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');
+Route::get('/story/share/{story}', 'StoryController@share')->name('story.share');
