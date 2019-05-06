@@ -1,126 +1,159 @@
 <div class="form-group">
-    <h5>Comparative metric</h5>
+    <h5>Comparative metrics</h5>
+    <p class="comparative_metric_paragraph">Environmental factors</p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_air" id="">
+        <label class="form-check-label" for="">
+            Air pollution
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_noise" id="">
+        <label class="form-check-label" for="">
+            Noise pollution
+        </label>
+    </div>
+
+    <p class="comparative_metric_paragraph">Public space quality</p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_parks" id="">
+        <label class="form-check-label" for="">
+            Parks
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_playgrounds" id="">
+        <label class="form-check-label" for="">
+            Playgrounds
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_gardens" id="">
+        <label class="form-check-label" for="">
+            Urban gardens
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_recreational" id="">
+        <label class="form-check-label" for="">
+            Recreational fields
+        </label>
+    </div>
+
     <p class="comparative_metric_paragraph">Physical health</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_experienced" id="">
         <label class="form-check-label" for="">
-            Experienced health, illness , disability.
+            Experienced health, illness, disability
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_fall" id="">
         <label class="form-check-label" for="">
-            Fall accidents.
+            Fall accidents
         </label>
     </div>
-
     <p class="comparative_metric_paragraph">Mental health</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_socio" id="">
         <label class="form-check-label" for="">
-            Socio-emotional health.
+            Socio-emotional health problems
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_thought" id="">
         <label class="form-check-label" for="">
-            Suicide.
-        </label>
-    </div>
-
-    <p class="comparative_metric_paragraph">Social living environment</p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
-        <label class="form-check-label" for="">
-            Relationships.
+            Thought of Suicide
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_attempted" id="">
         <label class="form-check-label" for="">
-            Social safety.
+            Attempted Suicide
         </label>
     </div>
 
     <p class="comparative_metric_paragraph">Social living environment</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_contact" id="">
         <label class="form-check-label" for="">
-            Relationships.
+            Contact with neighbours
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_exclusion" id="">
         <label class="form-check-label" for="">
-            Social safety.
+            Social exclusion
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_loneliness" id="">
+        <label class="form-check-label" for="">
+            Loneliness
         </label>
     </div>
 
     <p class="comparative_metric_paragraph">Weight, nutrition, exercise</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_over" id="">
         <label class="form-check-label" for="">
-            Weight class (underweight, overweight, obese).
+            Overweight
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_under" id="">
         <label class="form-check-label" for="">
-            Food.
+            Underweight
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_eating" id="">
         <label class="form-check-label" for="">
-            Sport an movement.
-        </label>
-    </div>
-
-    <p class="comparative_metric_paragraph">Living habits</p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
-        <label class="form-check-label" for="">
-            Use of stimulants.
+            Vegetable and fruit eating
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_sugary" id="">
         <label class="form-check-label" for="">
-            Sexuality.
+            Sugary drinks consumption
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_exercise" id="">
         <label class="form-check-label" for="">
-            Social media and gaming.
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
-        <label class="form-check-label" for="">
-            Oral hygiene.
+            Exercise practice
         </label>
     </div>
 
-    <p class="comparative_metric_paragraph">Living environment</p>
+    <p class="comparative_metric_paragraph">Lifestyle habits</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_smoking" id="">
         <label class="form-check-label" for="">
-            Noise pollution.
+            Smoking
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_alcohol" id="">
         <label class="form-check-label" for="">
-            Living and neighborhood around it.
+            Alcohol use
         </label>
     </div>
-
-    <p class="comparative_metric_paragraph">Remaining</p>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="">
+        <input class="form-check-input" type="checkbox" value="comp_drugs" id="">
         <label class="form-check-label" for="">
-            Other health and lifestyle.
+            Drugs use
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_sex" id="">
+        <label class="form-check-label" for="">
+            Sexually active
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="comp_condom" id="">
+        <label class="form-check-label" for="">
+            Condom use
         </label>
     </div>
 </div>

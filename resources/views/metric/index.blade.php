@@ -53,16 +53,7 @@
         {{--@csrf--}}
 
         <!--main metric-->
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Main Metric</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
+        @include('metric.metric-selection-partials.main_metric')
 
         <!--comp metric-->
         @include('metric.metric-selection-partials.comparative_metric')
@@ -92,10 +83,10 @@
         </div>
 
         <!--Age-->
-        @include('metric.metric-selection-partials.age')
+        {{--@include('metric.metric-selection-partials.age')--}}
 
         <!--places-->
-        @include('metric.metric-selection-partials.view')
+        {{--@include('metric.metric-selection-partials.view')--}}
     </form>
 @endsection
 
@@ -175,5 +166,30 @@
             $('input[name=story_add_body_to_story_hidden_json]').val(JSON.stringify(quill.getContents()));
             document.getElementById('form_make_story').submit();
         }
+    </script>
+    <script>
+        var slider_age = document.getElementById("form_slider_story_age");
+        var output_age = document.getElementById("output_form_slider_story_age");
+        output_age.innerHTML = slider_age.value;
+
+        slider_age.oninput = function() {
+            output_age.innerHTML = this.value;
+        };
+
+        var slider_weight = document.getElementById("form_slider_story_weight");
+        var output_weight = document.getElementById("output_form_slider_story_weight");
+        output_weight.innerHTML = slider_weight.value;
+
+        slider_weight.oninput = function() {
+            output_weight.innerHTML = this.value;
+        };
+
+        var slider_height = document.getElementById("form_slider_story_height");
+        var output_height  = document.getElementById("output_form_slider_story_height");
+        output_height.innerHTML = slider_height.value;
+
+        slider_height.oninput = function() {
+            output_height.innerHTML = this.value;
+        };
     </script>
 @endsection
