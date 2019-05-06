@@ -105,7 +105,14 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
-        return $story;
+        if($story->user_id != auth()->user()->id){
+            abort(403, 'Unauthorized action.');
+        }
+
+        $story->delete();
+
+        return back()->withMessage('Story successfully deleted');
+
     }
 
     public function ajaxSearch()
@@ -128,7 +135,7 @@ class StoryController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $hash = base64_encode(Hash::make($story->id . Config::get('APP_KEY')));
+        $hash = base64_encode(Hash::make($story->id . time() . Config::get('APP_KEY')));
 
         $link = ShareableLink::buildFor($story)
             ->setPassword($hash)

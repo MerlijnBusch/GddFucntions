@@ -1,16 +1,18 @@
-<div class="form-group">
+@if($errors->any())
+    <div class="form-group">
 
-    @foreach($errors->all() as $error)
+        @foreach($errors->all() as $error)
 
-        <div class="alert alert-danger">
+            <div class="alert alert-danger">
 
-            <ul>
+                <ul>
 
-                <li> {{ $error }} </li>
+                    <li> {{ $error }} </li>
 
-            </ul>
+                </ul>
 
-        </div>
-    @endforeach
+            </div>
+        @endforeach
 
-</div>
+    </div>
+@endif
