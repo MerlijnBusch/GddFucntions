@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 Route::get('/', function () {
     return view('layouts.master');
@@ -34,4 +34,9 @@ Route::get('/moderator', 'Moderator\ModeratorController@index')
     ->name('moderator.index');
 
 Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');
-Route::get('/story/share/{story}', 'StoryController@share')->name('story.share');
+Route::put('/story/share/{story}', 'StoryController@share')->name('story.share');
+
+Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (ShareableLink $link) {
+    $data = $link->shareable;
+    return view('story.sharedStory',compact('data'));
+}]);

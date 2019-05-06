@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa143620b8b1ad7bb7f19b96d32b3f0b",
+    "content-hash": "5f047af5d7e0f7195922ab0d609bc715",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1397,6 +1397,60 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "sassnowski/laravel-shareable-models",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ksassnowski/laravel-shareable-models.git",
+                "reference": "3e0b836b45154dc8435232bdb3bca52c699b163a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ksassnowski/laravel-shareable-models/zipball/3e0b836b45154dc8435232bdb3bca52c699b163a",
+                "reference": "3e0b836b45154dc8435232bdb3bca52c699b163a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.4",
+                "illuminate/http": "^5.4",
+                "illuminate/support": "^5.4",
+                "php": "^5.6|^7.0",
+                "ramsey/uuid": "^3.6"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "^0.4.4",
+                "doctrine/dbal": "^2.5",
+                "mockery/mockery": "^0.9.9",
+                "orchestra/testbench": "^3.3",
+                "phpunit/phpunit": "^5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sassnowski\\LaravelShareableModel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kai Sassnowski",
+                    "email": "me@kai-sassnowki.com"
+                }
+            ],
+            "description": "Create shareable links from your eloquent models.",
+            "time": "2017-10-13T14:20:49+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

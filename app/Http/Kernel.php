@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'is_moderator' => \App\Http\Middleware\IsModerator::class,
+        'shared' => \Sassnowski\LaravelShareableModel\Http\Middleware\ValidateShareableLink::class,
     ];
 
     /**

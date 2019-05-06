@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Sassnowski\LaravelShareableModel\ShareableLinkServiceProvider::class,
         /*
          * Application Service Providers...
          */

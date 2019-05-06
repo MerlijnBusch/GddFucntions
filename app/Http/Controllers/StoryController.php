@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
+
 
 class StoryController extends Controller
 {
@@ -120,6 +122,16 @@ class StoryController extends Controller
 
     public function share(Story $story)
     {
-        return 'share';
+
+        $link = ShareableLink::buildFor($story)
+            ->setPassword('test')
+            ->setActive()
+            ->build();
+
+        $sharedLink = $link->url;
+        return view('story.partials.sharedLinkDisplay', compact('sharedLink'));
+
     }
+
+
 }
