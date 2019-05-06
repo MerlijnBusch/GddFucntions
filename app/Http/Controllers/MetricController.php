@@ -90,7 +90,7 @@ class MetricController extends Controller
 
             $input = Input::get('data');
             $input = json_decode($input, true);
-//            var_dump($input);
+
             return response()->json(['status' => 'success', 'message' => $input]);
         } else {
             return response()->json(['status' => 'fail', 'message' => 'an error occurred']);

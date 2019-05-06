@@ -51,6 +51,8 @@
 
     <form id="metric_form">
         {{--@csrf--}}
+
+        <!--main metric-->
         <div class="form-group">
             <label for="exampleFormControlSelect1">Main Metric</label>
             <select class="form-control" id="exampleFormControlSelect1">
@@ -62,6 +64,7 @@
             </select>
         </div>
 
+        <!--comp metric-->
         @include('metric.metric-selection-partials.comparative_metric')
 
         <div class="form-group">
@@ -88,7 +91,10 @@
             </div>
         </div>
 
+        <!--Age-->
         @include('metric.metric-selection-partials.age')
+
+        <!--places-->
         @include('metric.metric-selection-partials.view')
     </form>
 @endsection

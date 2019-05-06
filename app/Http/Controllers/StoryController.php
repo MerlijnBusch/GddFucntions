@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
@@ -122,16 +124,20 @@ class StoryController extends Controller
 
     public function share(Story $story)
     {
+        if($story->user_id != auth()->user()->id){
+            abort(403, 'Unauthorized action.');
+        }
+
+        $hash = base64_encode(Hash::make($story->id . Config::get('APP_KEY')));
 
         $link = ShareableLink::buildFor($story)
-            ->setPassword('test')
+            ->setPassword($hash)
             ->setActive()
             ->build();
 
         $sharedLink = $link->url;
-        return view('story.partials.sharedLinkDisplay', compact('sharedLink'));
+        return view('story.partials.sharedLinkDisplay', compact('sharedLink', 'hash'));
 
     }
-
 
 }
