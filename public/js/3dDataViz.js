@@ -9,6 +9,7 @@ var booleanWestpoort = false;
 
 function start3DdataViz() {
     if(display3dData) {
+        document.getElementById('data_viz_cubes_update').innerHTML = '';
         document.getElementById('data_viz_cubes_update').setAttribute("style", "height:500px");
         let a = window.getComputedStyle(document.getElementById("data_viz_cubes_update"), null);
         var canvasHeight = parseInt(a.getPropertyValue("height").substring(0, a.getPropertyValue("height").length - 2));
@@ -32,12 +33,18 @@ function start3DdataViz() {
             if (noscroll_var) {
                 document.getElementsByTagName("html")[0].style.overflowY = "";
                 document.body.style.paddingRight = "0";
+                controls.enabled = false;
                 controls.enableZoom = false;
+                controls.enablePan = false;
+                controls.enableRotate = false;
                 noscroll_var = false
             } else {
                 document.getElementsByTagName("html")[0].setAttribute('style', 'overflow-y: hidden !important');
                 document.body.style.paddingRight = "17px";
+                controls.enabled = true;
                 controls.enableZoom = true;
+                controls.enablePan = true;
+                controls.enableRotate = true;
                 noscroll_var = true
             }
         }
@@ -45,16 +52,9 @@ function start3DdataViz() {
         var renderer = new THREE.WebGLRenderer();
         renderer.setClearColor("#e3e0e5");
         renderer.setSize(canvasWidth, canvasHeight);
-// renderer.vr.enabled = true;
         var canvas = document.getElementById('data_viz_cubes_update');
+        renderer.setSize($(canvas).width(), $(canvas).height());
         canvas.appendChild(renderer.domElement);
-        canvas.style.width = "750px";
-
-        window.addEventListener('resize', () => {
-            renderer.setSize(canvasWidth, canvasHeight);
-            camera.aspect = canvasWidth / canvasHeight;
-            camera.updateProjectionMatrix();
-        });
 
         var raycaster = new THREE.Raycaster();
         var mouse = new THREE.Vector2();

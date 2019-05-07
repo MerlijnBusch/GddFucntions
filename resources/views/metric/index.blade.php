@@ -50,20 +50,22 @@
     <h1>Comparing metric</h1>
 
     <form id="metric_form">
-        {{--@csrf--}}
+    {{--@csrf--}}
 
-        <!--main metric-->
-        @include('metric.metric-selection-partials.main_metric')
+    <!--main metric-->
+    @include('metric.metric-selection-partials.main_metric')
 
-        <!--comp metric-->
-        @include('metric.metric-selection-partials.comparative_metric')
+    <!--comp metric-->
+    @include('metric.metric-selection-partials.comparative_metric')
 
-        <!--Age-->
-        {{--@include('metric.metric-selection-partials.age')--}}
+    <!--Age-->
+    {{--@include('metric.metric-selection-partials.age')--}}
 
-        <!--places-->
+    <!--places-->
         {{--@include('metric.metric-selection-partials.view')--}}
     </form>
+
+
 @endsection
 
 @section('content')
@@ -78,6 +80,7 @@
     @include('metric.partials.chart')
 
     @include('metric.partials.shareStory')
+
 
 @endsection
 
@@ -174,8 +177,5 @@
         slider_height.oninput = function() {
             output_height.innerHTML = this.value;
         };
-    </script>
-    <script>
-
     </script>
 @endsection
