@@ -1,12 +1,18 @@
+var booleanCentrum = false;
+var booleanZuid = false;
+var booleanWest = false;
+var booleanOost = false;
+var booleanNoord = false;
+var booleanNieuwWest = false;
+var booleanZuidOost = false;
+var booleanWestpoort = false;
+
 function start3DdataViz() {
     if(display3dData) {
         document.getElementById('data_viz_cubes_update').setAttribute("style", "height:500px");
         let a = window.getComputedStyle(document.getElementById("data_viz_cubes_update"), null);
-        console.log(a.getPropertyValue("width"));
-        var d = parseInt(a.getPropertyValue("width").substring(0, a.getPropertyValue("width").length - 2));
-        console.log(d);
         var canvasHeight = parseInt(a.getPropertyValue("height").substring(0, a.getPropertyValue("height").length - 2));
-        var canvasWidth = 500;
+        var canvasWidth = parseInt(a.getPropertyValue("width").substring(0, a.getPropertyValue("width").length - 2));
 
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, canvasWidth / canvasHeight, 0.1, 1000);
@@ -58,7 +64,7 @@ function start3DdataViz() {
 
         for (let i = 0; i < 8; i++) {
             let b = "";
-            0 === i ? b = "Centrum" : 1 === i ? b = "Zuid" : 2 === i ? b = "West" : 3 === i ? b = "Oost" : 4 === i ? b = "Noord" : 5 === i ? b = "Nieuw-West" : 6 === i ? b = "Zuidoost" : 7 === i && (b = "Westpoort");
+            0 === i ? b = "Centrum" : 1 === i ? b = "Zuid" : 2 === i ? b = "West" : 3 === i ? b = "Oost" : 4 === i ? b = "Noord" : 5 === i ? b = "NieuwWest" : 6 === i ? b = "ZuidOost" : 7 === i && (b = "Westpoort");
             var mesh = new THREE.Mesh(geometry, material);
             mesh.material.opacity = 1;
             mesh.name = b;
@@ -80,7 +86,6 @@ function start3DdataViz() {
 
         render();
 
-
         function onMouseMove(event) {
             event.preventDefault();
 
@@ -91,13 +96,47 @@ function start3DdataViz() {
 
             var intersects = raycaster.intersectObjects(scene.children, true);
             for (var i = 0; i < intersects.length; i++) {
+                booleanCentrum = false;
+                booleanZuid = false;
+                booleanWest = false;
+                booleanOost = false;
+                booleanNoord = false;
+                booleanNieuwWest = false;
+                booleanZuidOost = false;
+                booleanWestpoort = false;
+                switch(intersects[i].object.name){
+                    case "Centrum":
+                        booleanCentrum = true;
+                        break;
+                    case "Zuid":
+                        booleanZuid = true;
+                        break;
+                    case "West":
+                        booleanWest = true;
+                        break;
+                    case "Oost":
+                        booleanOost = true;
+                        break;
+                    case "Noord":
+                        booleanNoord = true;
+                        break;
+                    case "NieuwWest":
+                        booleanNieuwWest = true;
+                        break;
+                    case "ZuidOost":
+                        booleanZuidOost = true;
+                        break;
+                    case "Westpoort":
+                        booleanWestpoort = true;
+                        break;
+                    default:
+                        console.log('not on object');
+                }
                 this.tl = new TimelineMax();
-                console.log(intersects[i].object.name);
                 this.tl.to(intersects[i].object.scale, 1, {x: 2, ease: Expo.easeOut});
                 this.tl.to(intersects[i].object.scale, .5, {x: 1, ease: Expo.easeOut});
             }
         }
-
         window.addEventListener('mousemove', onMouseMove);
     }
 }
