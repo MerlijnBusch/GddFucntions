@@ -13,21 +13,24 @@
             <div class="form-group">
                 <label for="title_make_story">Title:</label>
                 <div class="form-group">
-                    <input name="title_make_story" type="text" id="title_make_story" style="width: 100%" placeholder="An epic title...">
+                    <input class="form-control" name="title_make_story" type="text" id="title_make_story" style="width: 100%" placeholder="An epic title...">
                 </div>
 
+                <hr>
                 @include('metric.partials.shareStoryPartials.persona')
-
+                <hr>
                 @include('metric.partials.shareStoryPartials.topNeeds')
+                <hr>
+                @include('metric.partials.shareStoryPartials.storyPoints')
+                <hr>
 
-                {{--<div class="form-group">--}}
-                    {{--<input name="about" type="hidden" id="about" class="hidden_input_body_text_story">--}}
-                    {{--<div id="editor-container" style="background: white;height: 300px;" class="hidden_input_body_text_story">--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div class="form-group">
+                    <label for="">Additional text </label>
+                    <textarea class="form-control" id="" rows="7"></textarea>
+                </div>
+
+                <input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">
             </div>
-            {{--<input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">--}}
-            {{--<input type="hidden" id="story_add_body_to_story_hidden_json" name="story_add_body_to_story_hidden_json">--}}
             <div class="row">
                 <div class="col-6">
                     <div class="form-check float-left">
@@ -39,7 +42,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group float-right">
-                        <button class="btn btn-success box--shadow" type="button" onclick="submit_form()">Save Profile</button>
+                        <button class="btn btn-success box--shadow" type="button" onclick="submit_form()">Submit Story</button>
                     </div>
                 </div>
             </div>

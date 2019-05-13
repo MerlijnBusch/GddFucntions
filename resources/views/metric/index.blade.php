@@ -79,8 +79,11 @@
 
     @include('metric.partials.chart')
 
+    @if(auth()->check())
     @include('metric.partials.shareStory')
-
+    @elseif(!auth()->check())
+    <p>You have to be logged in for this action</p>
+    @endif
 
 @endsection
 
@@ -156,10 +159,9 @@
             }
         });
 
-        function submit_form() {
-            let about = document.querySelector('input[name=about]');
-            document.getElementById('form_make_story').submit();
-        }
+        var age;
+        var height;
+        var weight;
 
         var slider_age = document.getElementById("form_slider_story_age");
         var output_age = document.getElementById("output_form_slider_story_age");
@@ -167,6 +169,7 @@
 
         slider_age.oninput = function() {
             output_age.innerHTML = this.value;
+            age = this.value;
         };
 
         var slider_weight = document.getElementById("form_slider_story_weight");
@@ -175,6 +178,7 @@
 
         slider_weight.oninput = function() {
             output_weight.innerHTML = this.value;
+            weight = this.value;
         };
 
         var slider_height = document.getElementById("form_slider_story_height");
@@ -183,6 +187,11 @@
 
         slider_height.oninput = function() {
             output_height.innerHTML = this.value;
+            height = this.value;
         };
+
+        function submit_form() {
+            document.getElementById('form_make_story').submit();
+        }
     </script>
 @endsection
