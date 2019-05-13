@@ -1,5 +1,4 @@
 {{--https://quilljs.com/docs/quickstart/ to check how to make form submit--}}
-<div class="share-story" id="share-story">
 
     <div id="form-container-share-story" class="container-fluid" style="display: none">
 
@@ -19,14 +18,16 @@
 
                 @include('metric.partials.shareStoryPartials.persona')
 
-                <div class="form-group">
-                    <input name="about" type="hidden" id="about" class="hidden_input_body_text_story">
-                    <div id="editor-container" style="background: white;height: 300px;" class="hidden_input_body_text_story">
-                    </div>
-                </div>
+                @include('metric.partials.shareStoryPartials.topNeeds')
+
+                {{--<div class="form-group">--}}
+                    {{--<input name="about" type="hidden" id="about" class="hidden_input_body_text_story">--}}
+                    {{--<div id="editor-container" style="background: white;height: 300px;" class="hidden_input_body_text_story">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
-            <input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">
-            <input type="hidden" id="story_add_body_to_story_hidden_json" name="story_add_body_to_story_hidden_json">
+            {{--<input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">--}}
+            {{--<input type="hidden" id="story_add_body_to_story_hidden_json" name="story_add_body_to_story_hidden_json">--}}
             <div class="row">
                 <div class="col-6">
                     <div class="form-check float-left">
@@ -44,5 +45,4 @@
             </div>
         </form>
     </div>
-</div>
 

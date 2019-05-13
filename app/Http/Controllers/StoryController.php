@@ -45,6 +45,8 @@ class StoryController extends Controller
     public function store(Request $request)
     {
 
+        dd($request);
+
         $validated = $request->validate([
             'title_make_story' => 'required|min:5|max:150',
             'about' => 'required|min:100',
