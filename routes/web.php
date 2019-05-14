@@ -28,9 +28,11 @@ Route::post('/ajax-story-search','StoryController@ajaxSearch')->name('ajax-story
 
 Route::get('/admin', 'Admin\AdminController@index')
     ->middleware('is_admin')
+    ->middleware('auth')
     ->name('admin.index');
 Route::get('/moderator', 'Moderator\ModeratorController@index')
     ->middleware('is_moderator')
+    ->middleware('auth')
     ->name('moderator.index');
 
 Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');

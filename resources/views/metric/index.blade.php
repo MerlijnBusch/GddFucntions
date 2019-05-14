@@ -127,12 +127,7 @@
         var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var config = {
             type: 'line',
-            data: {
-                labels: MONTHS,
-                datasets: []
-            },
-
-            // Configuration options go here
+            data: { labels: MONTHS, datasets: [] },
             options: {
                 responsive: true,
                 hover: {
@@ -166,6 +161,9 @@
                     backgroundColor: color,
                     borderColor: color,
                     borderDash: [5, 5],
+                    pointRadius: 10,
+                    pointHoverRadius: 15,
+                    showLine: false,
                     data: [
                         Math.floor(Math.random() * 41),
                         Math.floor(Math.random() * 41),
