@@ -79,17 +79,16 @@
 
     @include('metric.partials.chart')
 
-    @if(auth()->check())
     @include('metric.partials.shareStory')
-    @elseif(!auth()->check())
-    <p>You have to be logged in for this action</p>
-    @endif
+
 
 @endsection
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="{{asset('js/ToggleDisplay.js')}}"></script>
     <script>
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -116,7 +115,7 @@
                     data: {'data' :  JSON.stringify(allVals)},
                     success: function(response){
                         console.log(response);
-                        addDataToTable(response);
+                        updateChart(response);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
@@ -125,27 +124,72 @@
             }
         }
 
-        function addDataToTable(response_data){
-            console.log(response_data);
-            forLoopDataInTable();
-            function forLoopDataInTable() {
-                var htmlPlace = document.getElementById('tbody_data_viz_show_data');
-                htmlPlace.innerHTML = '';
-                let b = 1;
-                let sum;
-                for(let i = 0; i < response_data.message.length; ++i) {
-                    var tr = document.createElement('tr');
-                    sum = i + b;
-                    tr.innerHTML =
-                        "<th scope=\"row\">" + sum + "<\/th>" +
-                        "<td> " + response_data.message[i] + " <\/td>" +
-                        "<td>" + Math.floor(Math.random() * 100) + "%<\/td>";
+        var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var config = {
+            type: 'line',
+            data: {
+                labels: MONTHS,
+                datasets: []
+            },
 
-                    htmlPlace.appendChild(tr);
-                }
+            // Configuration options go here
+            options: {
+                responsive: true,
+                hover: {
+                    mode: 'nearest',
+                    intersect: true,
+                    animationDuration: 0
+                },
+                animation: {
+                    duration: 0
+                },
+                responsiveAnimationDuration: 0
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById('chart_line').getContext('2d');
+            window.chartLine = new Chart(
+                ctx,
+                config
+            );
+        };
+
+        function updateChart(dataResponse) {
+            config.data.datasets = [];
+            var updateChartObject = {};
+            for(let i = 0; i < dataResponse.message.length; ++i){
+                let color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+                updateChartObject['chart' + i] = {
+                    label: dataResponse.message[i],
+                    fill: false,
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderDash: [5, 5],
+                    data: [
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41),
+                        Math.floor(Math.random() * 41)
+                    ]
+                };
+                config.data.datasets.push(updateChartObject['chart' + i]);
+                window.chartLine.update();
             }
         }
-
+    </script>
+    @if(auth()->check())
+    <script>
         $(".checkbox-story-submit").change(function() {
             let storyMetricStore = [];
             $('#metric_form :checked').each(function() {
@@ -191,7 +235,18 @@
         };
 
         function submit_form() {
+            if(persona_boolean) {
+                alert('true');
+            }
+            if(pointsToStory_boolean) {
+                alert('true');
+            }
+            if(topPointsToStory_boolean) {
+                alert('true');
+            }
+            return false;
             document.getElementById('form_make_story').submit();
         }
     </script>
+    @endif
 @endsection

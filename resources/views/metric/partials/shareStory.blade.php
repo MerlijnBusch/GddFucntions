@@ -1,6 +1,7 @@
 {{--https://quilljs.com/docs/quickstart/ to check how to make form submit--}}
 
-    <div id="form-container-share-story" class="container-fluid" style="display: none">
+    <div id="form-container-share-story" class="container-fluid">
+        @if(auth()->check())
 
         <h4 class="display-4">Story writing</h4>
         <p class="lead">
@@ -30,6 +31,9 @@
                 </div>
 
                 <input type="hidden" id="story_add_metric_to_story_hidden" name="story_add_metric_to_story_hidden">
+                <input type="hidden" id="story_add_persona_to_story_hidden" name="story_add_persona_to_story_hidden">
+                <input type="hidden" id="story_add_top_needs_to_story_hidden" name="story_add_top_needs_to_story_hidden">
+                <input type="hidden" id="story_add_story_points_to_story_hidden" name="story_add_story_points_to_story_hidden">
             </div>
             <div class="row">
                 <div class="col-6">
@@ -47,5 +51,10 @@
                 </div>
             </div>
         </form>
+
+        @elseif(!auth()->check())
+            <p>You have to be logged in for this action</p>
+        @endif
+
     </div>
 
