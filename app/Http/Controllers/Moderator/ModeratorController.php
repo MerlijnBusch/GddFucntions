@@ -9,6 +9,6 @@ class ModeratorController extends Controller
 {
     public function index()
     {
-        return 'nerd';
+        return view('moderator.dashboard.index');
     }
 }
