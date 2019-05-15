@@ -34,11 +34,5 @@ Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (Share
     return view('story.sharedStory',compact('data'));
 }]);
 
-Route::get('/admin', 'Admin\AdminController@index')
-    ->middleware('is_admin')
-    ->middleware('auth')
-    ->name('admin.index');
-Route::get('/moderator', 'Moderator\ModeratorController@index')
-    ->middleware('is_moderator')
-    ->middleware('auth')
-    ->name('moderator.index');
+Route::get('/admin', 'Admin\AdminController@index')->name('admin.index');
+Route::get('/moderator', 'Moderator\ModeratorController@index')->name('moderator.index');

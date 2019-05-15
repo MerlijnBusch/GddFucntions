@@ -18,7 +18,10 @@
 
 @section('content')
     <h1>Moderator</h1>
-    <input type="file" id="myDOMElementId" onchange="parse()">
+    <form method="POST" action="">
+        <input type="file" id="myDOMElementId">
+        <button type="submit">Submit</button>
+    </form>
 @endsection
 
 
