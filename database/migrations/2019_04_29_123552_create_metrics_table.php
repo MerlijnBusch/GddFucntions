@@ -15,9 +15,8 @@ class CreateMetricsTable extends Migration
     {
         Schema::create('metrics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('age');
-            $table->string('city_district');
-            $table->string('gender');
+            $table->string('file_name');
+            $table->text('data_json_version');
             $table->timestamps();
         });
     }

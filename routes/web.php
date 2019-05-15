@@ -36,3 +36,4 @@ Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (Share
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin.index');
 Route::get('/moderator', 'Moderator\ModeratorController@index')->name('moderator.index');
+Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_cvs_to_json')->name('moderator.store.cvs_to_json');
