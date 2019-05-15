@@ -19,7 +19,8 @@ class ModeratorController extends Controller
     public function index()
     {
 
-        return view('moderator.dashboard.index');
+        $metrics = Metric::all();
+        return view('moderator.dashboard.index',compact('metrics'));
 
     }
 
@@ -30,6 +31,10 @@ class ModeratorController extends Controller
         $my_ext  = $ext[$ext_len];
         if($my_ext != 'csv'){
             abort(403, 'Unauthorized action.');
+        }
+
+        if(Metric::all()->where('file_name',  $request->input('file_name'))->first()){
+            return back()->withErrors(['Error File already exist']);
         }
 
         $input = trim($request->input('cvs_to_json_text'));
@@ -43,6 +48,6 @@ class ModeratorController extends Controller
                 return back()->withMessage('csv file is saved to the database');
             }
         }
-        return back()->withErrors(['Error', 'failed to upload']);
+        return back()->withErrors(['Error failed to upload']);
     }
 }
