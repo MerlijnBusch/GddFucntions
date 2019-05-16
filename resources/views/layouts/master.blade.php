@@ -42,6 +42,8 @@
         </div>
     </div>
 
+    @yield('content_with_out_sidebar')
+
 </main>
 <!-- FOOTER -->
 @include('layouts.footer')

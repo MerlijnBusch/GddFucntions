@@ -16,7 +16,7 @@ class CreateMetricsTable extends Migration
         Schema::create('metrics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('file_name')->unique();
-            $table->text('data_json_version');
+            $table->longText('data_json_version');
             $table->timestamps();
         });
     }
