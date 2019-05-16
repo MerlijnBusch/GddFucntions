@@ -11,7 +11,7 @@ class ModeratorController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth');
+        $this->  middleware('auth');
         $this->middleware('is_moderator');
 
     }
@@ -22,6 +22,13 @@ class ModeratorController extends Controller
         $metrics = Metric::all();
         return view('moderator.dashboard.index',compact('metrics'));
 
+    }
+
+    public function metric_show(Metric $metric)
+    {
+//        $metric_php_array = json_decode($metric->data_json_version);
+//        dd($metric_php_array);
+        return view('moderator.functions.edit',compact('metric'));
     }
 
     public function store_cvs_to_json(Request $request){
@@ -49,5 +56,11 @@ class ModeratorController extends Controller
             }
         }
         return back()->withErrors(['Error failed to upload']);
+    }
+
+    public function destroy_metric(Metric $metric)
+    {
+        $metric->delete();
+        return back()->withMessage('Story successfully deleted');
     }
 }

@@ -27,11 +27,8 @@
         <button type="button" onclick="parse()">Submit</button>
     </form>
 
-    @forelse($metrics as $metric)
-        {{$metric->file_name}}<hr>
-    @empty
-        <h1>No data sets</h1>
-    @endforelse
+    @include('moderator.dashboard.partials.linkToFunctions')
+
 @endsection
 
 
@@ -59,7 +56,5 @@
                 }
             });
         }
-
-
     </script>
 @endsection

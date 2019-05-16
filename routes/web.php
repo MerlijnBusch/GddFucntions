@@ -36,4 +36,6 @@ Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (Share
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin.index');
 Route::get('/moderator', 'Moderator\ModeratorController@index')->name('moderator.index');
+Route::get('/moderator/metric/show/{metric}', 'Moderator\ModeratorController@metric_show')->name('moderator.metric.show');
 Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_cvs_to_json')->name('moderator.store.cvs_to_json');
+Route::delete('/moderator/destroy/metric/{metric}','Moderator\ModeratorController@destroy_metric')->name('moderator.destroy.metric');
