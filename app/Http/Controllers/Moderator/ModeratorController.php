@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Moderator;
 
+use App\Moderator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Metric;
@@ -11,7 +12,7 @@ class ModeratorController extends Controller
     public function __construct()
     {
 
-        $this->  middleware('auth');
+        $this->middleware('auth');
         $this->middleware('is_moderator');
 
     }
@@ -26,17 +27,15 @@ class ModeratorController extends Controller
 
     public function metric_show(Metric $metric)
     {
-//        $metric_php_array = json_decode($metric->data_json_version);
-//        dd($metric_php_array);
+
         return view('moderator.functions.edit',compact('metric'));
+
     }
 
     public function store_cvs_to_json(Request $request){
 
-        $ext     = explode('.', $request->input('file_name'));
-        $ext_len = count($ext) - 1;
-        $my_ext  = $ext[$ext_len];
-        if($my_ext != 'csv'){
+        $validatedFile = Moderator::getFileType($request->input('file_name'));
+        if($validatedFile != 'csv'){
             abort(403, 'Unauthorized action.');
         }
 
@@ -44,18 +43,35 @@ class ModeratorController extends Controller
             return back()->withErrors(['Error File already exist']);
         }
 
-        $input = trim($request->input('cvs_to_json_text'));
-        if ((substr($input, 0, 1) == '{' && substr($input, -1) == '}') or (substr($input, 0, 1) == '[' && substr($input, -1) == ']')) {
-            $output = json_decode($input, 1);
-            if (in_array(gettype($output),['object','array'])) {
-                $metric = new Metric();
-                $metric->file_name          =  $request->input('file_name');
-                $metric->data_json_version  =  json_encode($output);
-                $metric->save();
-                return back()->withMessage('csv file is saved to the database');
-            }
+        $validatedJson = Moderator::checkIfStringIsJson($request->input('cvs_to_json_text'));
+        if($validatedJson !== true){
+            return back()->withErrors(['Error failed to upload']);
         }
-        return back()->withErrors(['Error failed to upload']);
+
+        $metric = new Metric();
+        $metric->file_name          =  $request->input('file_name');
+        $metric->data_json_version  =  $request->input('cvs_to_json_text');
+        $metric->save();
+        return back()->withMessage('csv file is saved to the database');
+
+    }
+
+    public function update_cvs_to_json(Request $request)
+    {
+
+        $validatedJson = Moderator::checkIfStringIsJson($request->input('json_stringify_edit_csv'));
+        if($validatedJson !== true){
+            return back()->withErrors(['Error failed to upload']);
+        }
+
+        if(!Metric::all()->where('file_name',  $request->input('form_title_csv_edit'))->first()){
+            return back()->withErrors(['Error This files does not exist yet!']);
+        }
+        $metric = Metric::all()->where('file_name',  $request->input('form_title_csv_edit'))->first();
+        $metric->data_json_version  =  $request->input('json_stringify_edit_csv');
+        $metric->update();
+
+        return back()->withMessage('Updated and saved in the database');
     }
 
     public function destroy_metric(Metric $metric)
