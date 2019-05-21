@@ -15,7 +15,7 @@ class UserProfileController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $story = Story::all()->where('user_id', '=', $user->id);
+        $story = Story::where('user_id', '=', $user->id)->paginate(4);
         return view('profile.index',compact('user','story'));
 
     }

@@ -50,7 +50,7 @@
     <p>no stories found</p>
 
 @endforelse
-
+{{ $story->links() }}
 @endsection
 
 @section('js')
