@@ -6,4 +6,7 @@ nav
     @if(auth()->user()->type === 'moderator')
         <a href="{{route('moderator.index')}}">moderator</a>
     @endif
+@if(auth()->user()->type === 'admin')
+    <a href="{{route('admin.index')}}">admin</a>
+@endif
 @endif

@@ -27,7 +27,10 @@ Route::post('/ajax-metric-update','MetricController@ajaxMetric')->name('ajax-met
 Route::post('/ajax-story-search','StoryController@ajaxSearch')->name('ajax-story-search');
 
 Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');
+Route::post('/user/profile/search','UserProfileController@search_user')->name('user.profile.search');
 Route::put('/story/share/{story}', 'StoryController@share')->name('story.share');
+
+Route::post('/chat/startChat/user/', 'ChatController@FindUser')->name('chat.startChat.user');
 
 Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (ShareableLink $link) {
     $data = $link->shareable;
@@ -41,3 +44,4 @@ Route::get('/moderator/metric/show/{metric}', 'Moderator\ModeratorController@met
 Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_cvs_to_json')->name('moderator.store.cvs_to_json');
 Route::put('/moderator/update/cvs_to_json','Moderator\ModeratorController@update_cvs_to_json')->name('moderator.update.cvs_to_json');
 Route::delete('/moderator/destroy/metric/{metric}','Moderator\ModeratorController@destroy_metric')->name('moderator.destroy.metric');
+

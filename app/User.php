@@ -65,4 +65,11 @@ class User extends Authenticatable
     {
         return 'name';
     }
+
+    public function chat()
+    {
+
+        return $this->hasMany('App\Chat');
+
+    }
 }

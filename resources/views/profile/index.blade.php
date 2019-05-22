@@ -51,10 +51,66 @@
 
 @endforelse
 {{ $story->links() }}
+
+
+    <div>
+
+        @include('profile.partials.chat')
+
+    </div>
 @endsection
 
 @section('js')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $('#search_user_form_profile').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                method: 'POST',
+                url: '{{route('user.profile.search')}}',
+                data: {
+                    'data' :  $value
+                },
+                success: function(response){
+                    var html = '';
+                    for(let i = 0; i < response.message.length; i++)
+                    {
+                        let tempHtml = "<span class=\"border-bottom border-dark\"> <a onclick=\"sendChatRequest(" + response.message[i].id + ")\" style=\"width:25vw;font-size: 1em;\">" + response.message[i].name + "</a></span><br>";
+                        html = html + tempHtml;
+                    }
+                    $( "div.display_user_names" )
+                        .html(html);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        });
+
+        function sendChatRequest(id){
+            console.log(id);
+            setTimeout(function() {
+                $.ajax({
+                    method: 'POST',
+                    url: '{{route('chat.startChat.user')}}',
+                    data: {
+                        'data' :  id
+                    },
+                    success: function(response){
+                        console.log(response)
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                });
+            }, 500);
+        }
+    </script>
 
 
 @endsection
