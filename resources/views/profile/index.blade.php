@@ -58,6 +58,10 @@
         @include('profile.partials.chat')
 
     </div>
+
+
+    @include('profile.partials.chatRequest')
+
 @endsection
 
 @section('js')

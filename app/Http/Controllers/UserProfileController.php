@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Story;
+use App\Chat;
 use Illuminate\Support\Facades\Input;
 
 class UserProfileController extends Controller
@@ -14,8 +15,12 @@ class UserProfileController extends Controller
         if($user->id != auth()->user()->id){
             abort(403, 'Unauthorized action.');
         }
+        $chatRequests = Chat::CheckChatRequest();
+
         $story = Story::where('user_id', '=', $user->id)->paginate(4);
-        return view('profile.index',compact('user','story'));
+        return view('profile.index',
+            compact('user', 'story', 'chatRequests')
+        );
     }
 
     public function search_user()
