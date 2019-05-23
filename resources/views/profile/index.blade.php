@@ -62,6 +62,35 @@
 
     @include('profile.partials.chatRequest')
 
+
+    <div>
+        @forelse($conversations as $conversation)
+            persoon waarmee je chat<br>
+            {{$conversation->conversation_id}}
+            ur chatting with john doe
+            <br>
+            {{--{{dd($allMessages)}}--}}
+            @forelse($allMessages as $message)
+                @foreach($message as $text)
+                    {{$text->message}}
+                    <br>
+                @endforeach
+            @empty
+
+            @endforelse
+            <form method="post" action="{{route('chat.message.create',['conversation_id' => $conversation->conversation_id])}}">
+                @csrf
+                @method('put')
+                <div class="form-group">
+                    <input type="text" class="form-control" id="chat_text_message_form" name="chat_text_message_form" placeholder="Type message..">
+                </div>
+                <button class="btn-success btn-sm float-right" type="submit">Submit</button>
+            </form>
+        @empty
+
+        @endforelse
+
+    </div>
 @endsection
 
 @section('js')

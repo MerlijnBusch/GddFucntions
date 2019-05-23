@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\ChatMessage;
 use Illuminate\Http\Request;
 use App\User;
 use App\Story;
 use App\Chat;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class UserProfileController extends Controller
@@ -17,9 +19,21 @@ class UserProfileController extends Controller
         }
         $chatRequests = Chat::CheckChatRequest();
 
+        $conversations = DB::table('chat_conversation_message')
+            ->where(function ($query) {
+                $query->where('user_id_belongs_to', '=', auth()->user()->id)
+                    ->orWhere('user_id_send_towards', '=', auth()->user()->id);
+            })->get();
+
+        $allMessages = [];
+        foreach ($conversations as $q) {
+            $allMessages[] = ChatMessage::all()->where('conversation_id_foreign', '=', $q->conversation_id);
+        }
+
         $story = Story::where('user_id', '=', $user->id)->paginate(4);
+
         return view('profile.index',
-            compact('user', 'story', 'chatRequests')
+            compact('user', 'story', 'chatRequests', 'conversations','allMessages')
         );
     }
 

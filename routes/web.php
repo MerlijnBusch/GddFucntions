@@ -33,6 +33,7 @@ Route::put('/story/share/{story}', 'StoryController@share')->name('story.share')
 Route::post('/chat/startChat/user/', 'ChatController@FindUser')->name('chat.startChat.user');
 Route::put('/chat/request/accept/{chat}', 'ChatController@AcceptChatRequest')->name('chat.request.accept');
 Route::delete('/chat/request/destroy/{chat}', 'ChatController@DestroyChatRequest')->name('chat.request.destroy');
+Route::put('/chat/message/create/{conversation_id}','ChatController@StoreChatMessage')->name('chat.message.create');
 
 Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (ShareableLink $link) {
     $data = $link->shareable;

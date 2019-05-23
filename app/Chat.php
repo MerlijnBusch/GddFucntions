@@ -56,10 +56,6 @@ class Chat extends Model
         ->where('user_id_send_towards_accepted_boolean','=', false);
     }
 
-    public static function activeChat()
-    {
-        return ChatMessage::all();
-    }
 
     public function user()
     {
