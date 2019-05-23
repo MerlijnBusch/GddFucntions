@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Chat;
 use Illuminate\Http\Request;
 use App\User;
+use App\ChatMessage;
 use Illuminate\Support\Facades\Input;
 
 class ChatController extends Controller
@@ -33,13 +34,35 @@ class ChatController extends Controller
 
     }
 
-    public function AcceptChatRequest(Request $request, Chat $chat)
+    public function AcceptChatRequest(Chat $chat)
     {
-        dd($chat);
+
+        if($chat->user_id_send_towards != auth()->user()->id){
+            abort(403, 'Unauthorized action.');
+        }
+
+        //Accepted the chat
+        $chat->user_id_send_towards_accepted_boolean = true;
+        $chat->save();
+
+        //Create the Actual Chat
+        $chatMessage = new ChatMessage;
+
+        $chatMessage->user_id_belongs_to = $chat->user_id_belongs_to;
+        $chatMessage->user_id_send_towards = $chat->user_id_send_towards;
+        $chatMessage->save();
+
+        return back()->withMessage('Chat is Accepted');
     }
 
-    public function DestroyChatRequest(Request $request, Chat $chat)
+    public function DestroyChatRequest(Chat $chat)
     {
+        if($chat->user_id_send_towards != auth()->user()->id){
+            abort(403, 'Unauthorized action.');
+        }
 
+        $chat->delete();
+
+        return back()->withMessage('Chat is Deleted');
     }
 }

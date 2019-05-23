@@ -97,7 +97,6 @@
         });
 
         function sendChatRequest(id){
-            console.log(id);
             setTimeout(function() {
                 $.ajax({
                     method: 'POST',
@@ -106,7 +105,15 @@
                         'data' :  id
                     },
                     success: function(response){
-                        console.log(response)
+                        if(response.status === 'success'){
+                            $( "div.success_message_chat_request_send" )
+                                .html('<div class=\"alert alert-success\" role=\"alert\">' +
+                                    'Request has successfully send </div>');
+                        } else {
+                            $( "div.success_message_chat_request_send" )
+                                .html('<div class=\"alert alert-danger\" role=\"alert\">' +
+                                    response.message + ' </div>');
+                        }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);

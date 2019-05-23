@@ -21,6 +21,24 @@ class Chat extends Model
             return false;
         }
 
+        $chatAlreadyPendingBooleanTrue = Chat::where('user_id_belongs_to','=', auth()->user()->id)
+            ->where('user_id_send_towards', '=', $id)
+            ->where('user_id_belongs_to_accepted_boolean','=', true)
+            ->where('user_id_send_towards_accepted_boolean','=', true)
+            ->first();
+        if($chatAlreadyPendingBooleanTrue){
+            return false;
+        }
+
+        $chatAlreadyPendingBooleanTrue2 = Chat::where('user_id_belongs_to','=', $id)
+            ->where('user_id_send_towards', '=', auth()->user()->id)
+            ->where('user_id_belongs_to_accepted_boolean','=', true)
+            ->where('user_id_send_towards_accepted_boolean','=', true)
+            ->first();
+        if($chatAlreadyPendingBooleanTrue2){
+            return false;
+        }
+
         $chatExist = Chat::where('user_id_send_towards', '=', $id)
             ->where('user_id_belongs_to','=', auth()->user()->id)
             ->first();
