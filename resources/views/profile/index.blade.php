@@ -72,11 +72,12 @@
             {{--{{dd($allMessages)}}--}}
             @forelse($allMessages as $message)
                 @foreach($message as $text)
-                    {{$text->message}}
-                    <br>
+                    @if($text->conversation_id_foreign === $conversation->conversation_id)
+                        {{$text->message}}
+                        <br>
+                    @endif
                 @endforeach
             @empty
-
             @endforelse
             <form method="post" action="{{route('chat.message.create',['conversation_id' => $conversation->conversation_id])}}">
                 @csrf

@@ -16,10 +16,10 @@ class ChatMessage extends Model
             })->get();
 
         foreach ($conversations as $q) {
-            if($id != $q->conversation_id){
-                return false;
+            if($id == $q->conversation_id){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
