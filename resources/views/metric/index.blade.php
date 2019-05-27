@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="float-left">
-                        <h1 onclick="toggleShareStory()">SHARE STORY</h1>
+                        {{--<h1 onclick="toggleShareStory()">SHARE STORY</h1>--}}
                     </div>
                 </div>
             </div>
@@ -49,14 +49,17 @@
 
     <h1>Comparing metric</h1>
 
-    <form id="metric_form">
+    <form class="metric_form" id="metric_form">
+        <div id="text"></div>
+        <div id="text2"></div>
+        <div id="text3"></div>
     {{--@csrf--}}
 
     <!--main metric-->
-    @include('metric.metric-selection-partials.main_metric')
+    {{--@include('metric.metric-selection-partials.main_metric')--}}
 
     <!--comp metric-->
-    @include('metric.metric-selection-partials.comparative_metric')
+    {{--@include('metric.metric-selection-partials.comparative_metric')--}}
 
     <!--Age-->
     {{--@include('metric.metric-selection-partials.age')--}}
@@ -79,7 +82,7 @@
 
     @include('metric.partials.chart')
 
-    @include('metric.partials.shareStory')
+    {{--@include('metric.partials.shareStory')--}}
 
 
 @endsection
@@ -94,6 +97,75 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        var FileNameArray = [
+            @foreach($metrics as $metric)
+                    file_name{{$metric->id}} = '{{$metric->file_name}}',
+            @endforeach
+        ];
+
+        var form = document.getElementById('metric_form');
+        for(let i = 0; i < FileNameArray.length; ++i){
+            FileNameArray[i] = (FileNameArray[i].split('.').slice(0, -1)).join('.');
+            let arrayNames = FileNameArray[i].split(',');
+            for(let j = 0; j < arrayNames.length; j++){
+                let x = $( "form.metric_form" ).children();
+                if(j === 0){
+                    for(let k = 0; k < x.length; k++){
+                        if($('#' +  arrayNames[j]).length === 0){
+                            let newDiv = document.createElement("div");
+                            let newInput =  "<label for=\"" + arrayNames[j] + "\">" + arrayNames[j] + "</label>" +
+                                "<input class=\"float-right " + arrayNames[j] + "\" id=\"" + arrayNames[j] + "\" type=\"checkbox\" " +
+                                "name=\"" + arrayNames[j] + "\"  value=\"" + arrayNames[j] + "\"/>";
+                            newDiv.id = arrayNames[j];
+                            form.append(newDiv);
+                            newDiv.innerHTML = newInput;
+                        }
+                    }
+                }
+                if(j === 1){
+                    let name = arrayNames[j - 1];
+                    if($('#' + name + '_' +arrayNames[j]).length === 0){
+                        let newDiv = document.createElement("div");
+                        let newInput =  "<label style=\"margin-left: 15px;\"" +
+                            " for=\"" + name + "_" +arrayNames[j] + "\">" + arrayNames[j] + "</label>" +
+                            "<input class=\"float-right " + name + "_" +arrayNames[j] + "\" id=\"" + name + "_" +arrayNames[j] +
+                            "\" type=\"checkbox\" name=\"" + name + "_" +arrayNames[j] + "\"  value=\"" + name + "_" +arrayNames[j] + "\"/>";
+                        newDiv.id = name + "_" + arrayNames[j];
+                        $( "." +  name ).after(newDiv);
+                        newDiv.innerHTML = newInput;
+                    }
+                }
+                if(j === 2){
+                    let currentName = arrayNames[j - 2] + "_" + arrayNames[j - 1] + "_" + arrayNames[j];
+                    let parentName =  arrayNames[j - 2] + "_" + arrayNames[j - 1];
+                    if($('#' + currentName).length === 0){
+                        let newDiv = document.createElement("div");
+                        let newInput =  "<label style=\"margin-left: 30px;\"" +
+                            " for=\"" + currentName + "\">" + arrayNames[j] + "</label>" +
+                            "<input class=\"float-right " + currentName + "\" id=\"" + currentName +
+                            "\" type=\"checkbox\" name=\"" + currentName + "\"  value=\"" + currentName + "\"/>";
+                        newDiv.id =  currentName;
+                        $( "." +  parentName ).after(newDiv);
+                        newDiv.innerHTML = newInput;
+                    }
+                }
+                if(j === 3){
+                    let currentName = arrayNames[j - 3] + "_" +arrayNames[j - 2] + "_" + arrayNames[j - 1] + "_" + arrayNames[j];
+                    let parentName =  arrayNames[j - 3] + "_" +arrayNames[j - 2] + "_" + arrayNames[j - 1];
+                    if($('#' + currentName).length === 0){
+                        let newDiv = document.createElement("div");
+                        let newInput =  "<label style=\"margin-left: 45px;\"" +
+                            " for=\"" + currentName + "\">" + arrayNames[j] + "</label>" +
+                            "<input class=\"float-right " + currentName + "\" id=\"" + currentName +
+                            "\" type=\"checkbox\" name=\"" + currentName + "\"  value=\"" + currentName + "\"/>";
+                        newDiv.id =  currentName;
+                        $( "." +  parentName ).after(newDiv);
+                        newDiv.innerHTML = newInput;
+                    }
+                }
+            }
+        }
 
         $("#metric_form :input").change(function() {
             updateCheckBoxesCheck();
@@ -201,50 +273,50 @@
             }
         });
 
-        var age;
-        var height;
-        var weight;
-
-        var slider_age = document.getElementById("form_slider_story_age");
-        var output_age = document.getElementById("output_form_slider_story_age");
-        output_age.innerHTML = slider_age.value;
-
-        slider_age.oninput = function() {
-            output_age.innerHTML = this.value;
-            age = this.value;
-        };
-
-        var slider_weight = document.getElementById("form_slider_story_weight");
-        var output_weight = document.getElementById("output_form_slider_story_weight");
-        output_weight.innerHTML = slider_weight.value;
-
-        slider_weight.oninput = function() {
-            output_weight.innerHTML = this.value;
-            weight = this.value;
-        };
-
-        var slider_height = document.getElementById("form_slider_story_height");
-        var output_height  = document.getElementById("output_form_slider_story_height");
-        output_height.innerHTML = slider_height.value;
-
-        slider_height.oninput = function() {
-            output_height.innerHTML = this.value;
-            height = this.value;
-        };
-
-        function submit_form() {
-            if(persona_boolean) {
-                alert('true');
-            }
-            if(pointsToStory_boolean) {
-                alert('true');
-            }
-            if(topPointsToStory_boolean) {
-                alert('true');
-            }
-            return false;
-            document.getElementById('form_make_story').submit();
-        }
+        // var age;
+        // var height;
+        // var weight;
+        //
+        // var slider_age = document.getElementById("form_slider_story_age");
+        // var output_age = document.getElementById("output_form_slider_story_age");
+        // output_age.innerHTML = slider_age.value;
+        //
+        // slider_age.oninput = function() {
+        //     output_age.innerHTML = this.value;
+        //     age = this.value;
+        // };
+        //
+        // var slider_weight = document.getElementById("form_slider_story_weight");
+        // var output_weight = document.getElementById("output_form_slider_story_weight");
+        // output_weight.innerHTML = slider_weight.value;
+        //
+        // slider_weight.oninput = function() {
+        //     output_weight.innerHTML = this.value;
+        //     weight = this.value;
+        // };
+        //
+        // var slider_height = document.getElementById("form_slider_story_height");
+        // var output_height  = document.getElementById("output_form_slider_story_height");
+        // output_height.innerHTML = slider_height.value;
+        //
+        // slider_height.oninput = function() {
+        //     output_height.innerHTML = this.value;
+        //     height = this.value;
+        // };
+        //
+        // function submit_form() {
+        //     if(persona_boolean) {
+        //         alert('true');
+        //     }
+        //     if(pointsToStory_boolean) {
+        //         alert('true');
+        //     }
+        //     if(topPointsToStory_boolean) {
+        //         alert('true');
+        //     }
+        //     return false;
+        //     document.getElementById('form_make_story').submit();
+        // }
     </script>
     @endif
 @endsection

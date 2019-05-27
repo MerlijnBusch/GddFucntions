@@ -15,7 +15,8 @@ class MetricController extends Controller
      */
     public function index()
     {
-        return view('metric.index');
+        $metrics = Metric::select('file_name', 'id')->get();
+        return view('metric.index', compact('metrics'));
     }
 
     /**
