@@ -104,6 +104,8 @@
             @endforeach
         ];
 
+        var childrenArray = [];
+
         var form = document.getElementById('metric_form');
         for(let i = 0; i < FileNameArray.length; ++i){
             FileNameArray[i] = (FileNameArray[i].split('.').slice(0, -1)).join('.');
@@ -132,34 +134,33 @@
                             "<input class=\"float-right " + name + "_" +arrayNames[j] + "\" id=\"" + name + "_" +arrayNames[j] +
                             "\" type=\"checkbox\" name=\"" + name + "_" +arrayNames[j] + "\"  value=\"" + name + "_" +arrayNames[j] + "\"/>";
                         newDiv.id = name + "_" + arrayNames[j];
+                        newDiv.className = arrayNames[j - 1] + "_child";
+                        newDiv.style.display = "none";
                         $( "." +  name ).after(newDiv);
                         newDiv.innerHTML = newInput;
                     }
                 }
-                if(j === 2){
-                    let currentName = arrayNames[j - 2] + "_" + arrayNames[j - 1] + "_" + arrayNames[j];
-                    let parentName =  arrayNames[j - 2] + "_" + arrayNames[j - 1];
-                    if($('#' + currentName).length === 0){
-                        let newDiv = document.createElement("div");
-                        let newInput =  "<label style=\"margin-left: 30px;\"" +
-                            " for=\"" + currentName + "\">" + arrayNames[j] + "</label>" +
-                            "<input class=\"float-right " + currentName + "\" id=\"" + currentName +
-                            "\" type=\"checkbox\" name=\"" + currentName + "\"  value=\"" + currentName + "\"/>";
-                        newDiv.id =  currentName;
-                        $( "." +  parentName ).after(newDiv);
-                        newDiv.innerHTML = newInput;
+                if(j > 1){
+                    let currentName = "";
+                    let parentName = "";
+                    for (let n = j; n > -1; n--) {
+                        if (n!=j) {
+                            currentName += "_";
+                            if(n!=0) {parentName += "_";}
+                        }
+                        if(n!=0){parentName += arrayNames[j - n];}
+                        currentName += arrayNames[j - n];
                     }
-                }
-                if(j === 3){
-                    let currentName = arrayNames[j - 3] + "_" +arrayNames[j - 2] + "_" + arrayNames[j - 1] + "_" + arrayNames[j];
-                    let parentName =  arrayNames[j - 3] + "_" +arrayNames[j - 2] + "_" + arrayNames[j - 1];
+                    let pixel = 15 * j;
                     if($('#' + currentName).length === 0){
                         let newDiv = document.createElement("div");
-                        let newInput =  "<label style=\"margin-left: 45px;\"" +
+                        let newInput =  "<label style=\"margin-left: " + pixel + "px;\"" +
                             " for=\"" + currentName + "\">" + arrayNames[j] + "</label>" +
                             "<input class=\"float-right " + currentName + "\" id=\"" + currentName +
                             "\" type=\"checkbox\" name=\"" + currentName + "\"  value=\"" + currentName + "\"/>";
                         newDiv.id =  currentName;
+                        newDiv.className = parentName + "_child";
+                        newDiv.style.display = "none";
                         $( "." +  parentName ).after(newDiv);
                         newDiv.innerHTML = newInput;
                     }
@@ -167,7 +168,13 @@
             }
         }
 
+        function updateDisplayCheckBoxes(id) {
+            $("." + id + "_child").toggle();
+            $("." + id + "_child input[type=checkbox]").prop( "checked", false );
+        }
+
         $("#metric_form :input").change(function() {
+            updateDisplayCheckBoxes(this.id);
             updateCheckBoxesCheck();
         });
 
@@ -260,18 +267,18 @@
     </script>
     @if(auth()->check())
     <script>
-        $(".checkbox-story-submit").change(function() {
-            let storyMetricStore = [];
-            $('#metric_form :checked').each(function() {
-                storyMetricStore.push($(this).val());
-            });
-            let dataBaseReady = JSON.stringify(storyMetricStore);
-            if(this.checked) {
-                $('input[name=story_add_metric_to_story_hidden]').val(dataBaseReady);
-            } else if(!this.checked){
-                $('input[name=story_add_metric_to_story_hidden]').val('');
-            }
-        });
+        // $(".checkbox-story-submit").change(function() {
+        //     let storyMetricStore = [];
+        //     $('#metric_form :checked').each(function() {
+        //         storyMetricStore.push($(this).val());
+        //     });
+        //     let dataBaseReady = JSON.stringify(storyMetricStore);
+        //     if(this.checked) {
+        //         $('input[name=story_add_metric_to_story_hidden]').val(dataBaseReady);
+        //     } else if(!this.checked){
+        //         $('input[name=story_add_metric_to_story_hidden]').val('');
+        //     }
+        // });
 
         // var age;
         // var height;

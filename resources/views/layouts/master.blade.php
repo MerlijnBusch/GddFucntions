@@ -13,15 +13,17 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     @yield('css')
 </head>
 <body>
+<div class="wrapper">
 
 @include('layouts.navbar')
 
-<main class="container-fluid">
+<main class="container-fluid" style="min-height: 68vh">
 
     @yield('jumbotron')
 
@@ -57,5 +59,6 @@
         integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
         crossorigin="anonymous"></script>
 @yield('js')
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<footer class="section footer-classic context-dark bg-image" style="background: #695a6f;padding-top: 25px">
+<footer class="section footer-classic context-dark bg-image" style="background: #000000;padding-top: 25px">
     <div class="container">
         <div class="row row-30">
             <div class="col-md-4 col-xl-5">

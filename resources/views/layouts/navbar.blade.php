@@ -1,66 +1,59 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar_backcolor">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <li class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('metric.index')}}">metric</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('story.index')}}">story</a>
-                </li>
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        <div class="navbar_ggd">
+            <div class="navbar_ggd-logo">
+                <a href="{{ url('/') }}">
+                    <img src="{{asset('images/logo.png')}}" alt="GGD logo" class="navbar_ggd-logo">
+                </a>
+            </div>
+            <div class="navbar_ggd-links">
+                <ul class="navbar_ul">
+                    <li class="nav-item navbar_li">
+                        <a class="nav-link" href="{{route('metric.index')}}">Metric</a>
                     </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    @if(auth()->user()->type === 'moderator')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('moderator.index')}}">moderator</a>
-                        </li>
-                    @endif
-                    @if(auth()->user()->type === 'admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.index')}}">admin</a>
-                        </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                    <li class="nav-item navbar_li">
+                        <a class="nav-link" href="{{route('story.index')}}">Story</a>
                     </li>
+                    @guest
+                        <li class="nav-item navbar_li">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item navbar_li">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        @if(auth()->user()->type === 'moderator')
+                            <li class="nav-item navbar_li">
+                                <a class="nav-link" href="{{route('moderator.index')}}">Moderator</a>
+                            </li>
+                        @endif
+                        @if(auth()->user()->type === 'admin')
+                            <li class="nav-item navbar_li">
+                                <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
+                            </li>
+                        @endif
+                        <li class="nav-item navbar_li">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user_profile',auth()->user()) }}">
-                            {{ Auth::user()->name }}
-                        </a>
-                    </li>
-                @endguest
-            </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+
+                        <li class="nav-item navbar_li">
+                            <a class="nav-link" href="{{ route('user_profile',auth()->user()) }}">
+                                {{ Auth::user()->name }}
+                            </a>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

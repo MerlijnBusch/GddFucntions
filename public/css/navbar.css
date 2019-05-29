@@ -1,0 +1,48 @@
+.navbar_ggd-logo {
+    width: auto;
+    height: 7vh;
+    grid-area: logo;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.navbar_ggd-links {
+    grid-area: links;
+}
+.navbar_ggd{
+    display: grid;
+    grid-template-columns:  auto 1fr;
+    grid-template-areas:
+            "logo links";
+}
+
+.navbar_ul{
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navbar_ggd {
+    background-color: #000000;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.navbar_backcolor{
+    background-color: #000000;
+}
+
+.navbar_li {
+    float: left;
+    margin: 5px 10px 5px 10px;
+    font-size: 1.5em;
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: red;
+}
+
