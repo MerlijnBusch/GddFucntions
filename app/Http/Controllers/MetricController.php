@@ -89,10 +89,36 @@ class MetricController extends Controller
     {
         if(request()->ajax()){
 
-            $input = Input::get('data');
-            $input = json_decode($input, true);
+            $arrayData = Input::get('data');
+            $arrayData = json_decode($arrayData, true);
 
-            return response()->json(['status' => 'success', 'message' => $input]);
+            $i = 0;
+            foreach ($arrayData as $value) {
+                $arrayData[$i] = strtr ($value, array ('_' => ','));
+                $i++;
+            }
+
+            $arrayWithKeys = [];
+            foreach($arrayData as $value){
+                $tmpArray = explode(',',trim($value));
+                if(count($tmpArray) > 1) {
+                    unset($tmpArray[count($tmpArray)-1]);
+                    $tmpArray = implode(",", $tmpArray);
+                    $arrayWithKeys[] = array_search($tmpArray, $arrayData);
+                }
+            }
+
+            foreach ($arrayWithKeys as $keys){
+                unset($arrayData[$keys]);
+            }
+            $arrayData = array_values($arrayData);
+
+            $queryData = [];
+            foreach ($arrayData as $data){
+                $queryData[] = Metric::where('file_name','LIKE',$data . '%')->get();
+            }
+
+            return response()->json(['status' => 'success', 'message' => $queryData]);
         } else {
             return response()->json(['status' => 'fail', 'message' => 'an error occurred']);
         }
