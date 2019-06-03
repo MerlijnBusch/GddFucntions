@@ -12,7 +12,7 @@
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 Route::get('/', function () {
-    return view('layouts.master');
+    return view('layouts.index');
 });
 
 Auth::routes();

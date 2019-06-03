@@ -105,7 +105,6 @@
         ];
 
         var childrenArray = [];
-
         var form = document.getElementById('metric_form');
         for(let i = 0; i < FileNameArray.length; ++i){
             FileNameArray[i] = (FileNameArray[i].split('.').slice(0, -1)).join('.');
@@ -116,7 +115,7 @@
                     for(let k = 0; k < x.length; k++){
                         if($('#' +  arrayNames[j]).length === 0){
                             let newDiv = document.createElement("div");
-                            let newInput =  "<label for=\"" + arrayNames[j] + "\">" + arrayNames[j] + "</label>" +
+                            let newInput =  "<b><label for=\"" + arrayNames[j] + "\">" + arrayNames[j] + "</label></b>" +
                                 "<input class=\"float-right " + arrayNames[j] + "\" id=\"" + arrayNames[j] + "\" type=\"checkbox\" " +
                                 "name=\"" + arrayNames[j] + "\"  value=\"" + arrayNames[j] + "\"/>";
                             newDiv.id = arrayNames[j];

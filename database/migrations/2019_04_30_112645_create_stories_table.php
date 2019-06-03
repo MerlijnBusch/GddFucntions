@@ -16,11 +16,8 @@ class CreateStoriesTable extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->text('body');
-            $table->text('body_json');
-            $table->text('metric_belonging_to_story')->nullable();
-            $table->bigInteger('user_id');
-            $table->string('accepted')->default('false');
+            $table->text('description');
+            $table->longText('json');
             $table->timestamps();
         });
     }
