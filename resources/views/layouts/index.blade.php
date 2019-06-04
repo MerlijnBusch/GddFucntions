@@ -6,7 +6,7 @@
 
 @endsection
 
-@section('jumbotron')
+@section('content_with_out_sidebar')
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -41,11 +41,11 @@
 
     <div id="content-main">
         <div class="row">
-            <div class="col-sm-6" style="height: 50vh;padding: 10px 15px 10px 15px">
-                <div style="background-color: #d9e2e4; height: 100%; width: 100%"></div>
+            <div class="col-sm-6" style="padding: 10px 15px 10px 15px">
+                <img src="{{asset('images/Homepage-01.png')}}" alt="home page" class="img-fluid">
             </div>
-            <div class="col-sm-6" style="height: 50vh;padding: 10px 15px 10px 15px">
-                <div style="background-color: #d9e2e4; height: 100%; width: 100%"></div>
+            <div class="col-sm-6" style="padding: 10px 15px 10px 15px">
+                <img src="{{asset('images/Homepage-02.png')}}" alt="home page" class="img-fluid">
             </div>
         </div>
     </div>

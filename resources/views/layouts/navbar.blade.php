@@ -1,4 +1,4 @@
-<nav class="navbar_backcolor">
+<nav class="navbar_backcolor" style="margin-top: -15px;">
     <div class="container">
         <div class="navbar_ggd">
             <div class="navbar_ggd-logo">

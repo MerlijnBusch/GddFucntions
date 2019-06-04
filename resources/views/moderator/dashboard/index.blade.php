@@ -29,6 +29,9 @@
 
     @include('moderator.dashboard.partials.linkToFunctions')
 
+    <hr>
+    all personases
+    <a href="{{route('moderator.persona.create')}}">create persona</a>
 @endsection
 
 

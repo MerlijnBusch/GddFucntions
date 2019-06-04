@@ -79,4 +79,9 @@ class ModeratorController extends Controller
         $metric->delete();
         return back()->withMessage('Story successfully deleted');
     }
+
+    public function create_persona()
+    {
+        return view('moderator.partial-pages.persona.create');
+    }
 }
