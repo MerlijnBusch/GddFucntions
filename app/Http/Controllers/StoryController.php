@@ -45,24 +45,6 @@ class StoryController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
-
-        $validated = $request->validate([
-            'title_make_story' => 'required|min:5|max:150',
-            'about' => 'required|min:100',
-            'story_add_metric_to_story_hidden' => 'nullable'
-        ]);
-
-        $story = new Story;
-        $story->title = $validated['title_make_story'];
-        $story->body = $validated['about'];
-        $story->body_json = json_encode($request->story_add_body_to_story_hidden_json);
-        $story->user_id = auth()->user()->id;
-        $story->metric_belonging_to_story = $validated['story_add_metric_to_story_hidden'];
-        $story->accepted = Story::PENDING;
-        $story->save();
-
-        return back()->withMessage('Story created its pending for beeing accepted');
     }
 
     /**
@@ -84,7 +66,7 @@ class StoryController extends Controller
      */
     public function edit(Story $story)
     {
-        return view('story.edit',compact('story'));
+
     }
 
     /**
@@ -107,13 +89,6 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
-        if($story->user_id != auth()->user()->id){
-            abort(403, 'Unauthorized action.');
-        }
-
-        $story->delete();
-
-        return back()->withMessage('Story successfully deleted');
 
     }
 
@@ -133,19 +108,6 @@ class StoryController extends Controller
 
     public function share(Story $story)
     {
-        if($story->user_id != auth()->user()->id){
-            abort(403, 'Unauthorized action.');
-        }
-
-        $hash = base64_encode(Hash::make($story->id . time() . Config::get('APP_KEY')));
-
-        $link = ShareableLink::buildFor($story)
-            ->setPassword($hash)
-            ->setActive()
-            ->build();
-
-        $sharedLink = $link->url;
-        return view('story.partials.sharedLinkDisplay', compact('sharedLink', 'hash'));
 
     }
 

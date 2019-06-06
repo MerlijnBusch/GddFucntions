@@ -18,7 +18,8 @@
     {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     @yield('css')
 </head>
-<body style="background-image: linear-gradient(to right, #f3f3f3 , #b7b7b9);">
+<body style="background-color: white">
+{{--style="background-image: linear-gradient(to right, #f3f3f3 , #b7b7b9);"--}}
 <div class="wrapper">
 
 @include('layouts.navbar')

@@ -24,19 +24,19 @@
 @endsection
 
 @section('js')
-<script>
-    function copyLink() {
-        let copyLink = document.getElementById("copy_link");
-        copyLink.select();
-        document.execCommand("copy");
-        alert("Pasted towards clickboard: " + copyLink.value);
-    }
-    
-    function copyHash() {
-        let copyHash = document.getElementById("copy_hash");
-        copyHash.select();
-        document.execCommand("copy");
-        alert("Pasted towards clickboard: " + copyHash.value);
-    }
-</script>
+    <script>
+        function copyLink() {
+            let copyLink = document.getElementById("copy_link");
+            copyLink.select();
+            document.execCommand("copy");
+            alert("Pasted towards clickboard: " + copyLink.value);
+        }
+
+        function copyHash() {
+            let copyHash = document.getElementById("copy_hash");
+            copyHash.select();
+            document.execCommand("copy");
+            alert("Pasted towards clickboard: " + copyHash.value);
+        }
+    </script>
 @endsection

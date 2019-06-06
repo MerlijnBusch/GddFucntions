@@ -30,10 +30,8 @@ class UserProfileController extends Controller
             $allMessages[] = ChatMessage::all()->where('conversation_id_foreign', '=', $q->conversation_id);
         }
 
-        $story = Story::where('user_id', '=', $user->id)->paginate(4);
-
         return view('profile.index',
-            compact('user', 'story', 'chatRequests', 'conversations','allMessages')
+            compact('user', 'chatRequests', 'conversations','allMessages')
         );
     }
 

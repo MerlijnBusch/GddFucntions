@@ -7,41 +7,41 @@
 @endsection
 
 @section('jumbotron')
-    <div class="jumbotron jumbotron-fluid box--shadow">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    <h1>GGD LOGO INSERT</h1>
-                </div>
-                <div class="col-12 col-md-7">
-                    <div id="already-made-stories">
-                        <h1 class="display-4">Stories</h1>
-                        <p class="lead">Lorem Ipsum is just a sample
-                            text from the printing and typesetting
-                            industry. Lorem Ipsum has been the standard
-                            sample text in this industry since the
-                            16th century, when an unknown printer
-                            took a brewing hook with letters and
-                            mixed them up to make a font catalog.
-                            It has not only survived five centuries
-                            but has also, virtually unchanged, been
-                            copied in electronic letter setting.
-                            It became popular in the 60s with the
-                            introduction of Letraset sheets with Lorem
-                            Ipsum passages and more recently with
-                            desktop publishing software such as
-                            Aldus PageMaker containing versions of Lorem Ipsum.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="float-left">
+    {{--<div class="jumbotron jumbotron-fluid box--shadow">--}}
+        {{--<div class="container-fluid">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-12 col-md-3">--}}
+                    {{--<h1>GGD LOGO INSERT</h1>--}}
+                {{--</div>--}}
+                {{--<div class="col-12 col-md-7">--}}
+                    {{--<div id="already-made-stories">--}}
+                        {{--<h1 class="display-4">Stories</h1>--}}
+                        {{--<p class="lead">Lorem Ipsum is just a sample--}}
+                            {{--text from the printing and typesetting--}}
+                            {{--industry. Lorem Ipsum has been the standard--}}
+                            {{--sample text in this industry since the--}}
+                            {{--16th century, when an unknown printer--}}
+                            {{--took a brewing hook with letters and--}}
+                            {{--mixed them up to make a font catalog.--}}
+                            {{--It has not only survived five centuries--}}
+                            {{--but has also, virtually unchanged, been--}}
+                            {{--copied in electronic letter setting.--}}
+                            {{--It became popular in the 60s with the--}}
+                            {{--introduction of Letraset sheets with Lorem--}}
+                            {{--Ipsum passages and more recently with--}}
+                            {{--desktop publishing software such as--}}
+                            {{--Aldus PageMaker containing versions of Lorem Ipsum.--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-6 col-md-2">--}}
+                    {{--<div class="float-left">--}}
                         {{--<h1 onclick="toggleShareStory()">SHARE STORY</h1>--}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 @endsection
 
@@ -50,22 +50,7 @@
     <h1>Comparing metric</h1>
 
     <form class="metric_form" id="metric_form">
-        <div id="text"></div>
-        <div id="text2"></div>
-        <div id="text3"></div>
-    {{--@csrf--}}
 
-    <!--main metric-->
-    {{--@include('metric.metric-selection-partials.main_metric')--}}
-
-    <!--comp metric-->
-    {{--@include('metric.metric-selection-partials.comparative_metric')--}}
-
-    <!--Age-->
-    {{--@include('metric.metric-selection-partials.age')--}}
-
-    <!--places-->
-        {{--@include('metric.metric-selection-partials.view')--}}
     </form>
 
 
