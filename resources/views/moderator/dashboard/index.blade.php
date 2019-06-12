@@ -32,8 +32,11 @@
     <hr>
     all personases
     <a href="{{route('moderator.persona.create')}}">create persona</a>
+    <br>
 
+    <div style="overflow: hidden">
     @include('moderator.dashboard.partials.story')
+    </div>
 @endsection
 
 

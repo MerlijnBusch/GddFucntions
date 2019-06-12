@@ -13,12 +13,12 @@
     <div style="padding: 15px 15px 15px 15px;overflow: hidden">
     @foreach($story as $s)
         @if($s->accepted == 'true')
-        <div class="float-left">
+        <div class="float-left" style="margin: 3px 3px 3px 3px">
             <div class="card" style="width: 350px;position: relative;
     text-align: center;">
                 <img class="img-thumbnail" style="height: 350px;width: 350px" src="{{asset('uploadedImages/'.$s->path)}}" alt="{{$s->title}}">
                 <b style="position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);">{{$s->title}}</b>
             </div>

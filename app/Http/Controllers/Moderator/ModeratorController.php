@@ -151,4 +151,15 @@ class ModeratorController extends Controller
 
         return back()->withMessage('Story successfully deleted');
     }
+
+    public function display_story(Request $request, Story $story)
+    {
+        $x = '';
+        if($story->accepted == 'true'){ $x = $request->input('accepted_select');}
+        if($story->accepted == 'false'){ $x = $request->input('pending_select');}
+        if($story->accepted == 'declined'){ $x = $request->input('declined_select');}
+        $story->accepted = $x;
+        $story->update();
+        return back()->withMessage('Persona display successfully updated');
+    }
 }

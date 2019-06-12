@@ -45,11 +45,13 @@ Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (Share
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin.index');
 
+
 Route::get('/moderator', 'Moderator\ModeratorController@index')->name('moderator.index');
 Route::get('/moderator/metric/show/{metric}', 'Moderator\ModeratorController@metric_show')->name('moderator.metric.show');
 route::get('/moderator/persona/create','Moderator\ModeratorController@create_persona')->name('moderator.persona.create');
 Route::get('/moderator/persona/edit/{story}','Moderator\ModeratorController@edit_persona')->name('moderator.persona.edit');
 Route::put('/moderator/persona/share/{story}','Moderator\ModeratorController@share_persona')->name('moderator.persona.share');
+Route::post('/moderator/persona/update/displaying/{story}','Moderator\ModeratorController@display_story')->name('moderator.persona.update.display');
 Route::delete('/moderator/persona/delete/{story}','Moderator\ModeratorController@delete_persona')->name('moderator.persona.destroy');
 route::post('/moderator/persona/store','Moderator\ModeratorController@store_persona')->name('moderator.persona.store');
 Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_cvs_to_json')->name('moderator.store.cvs_to_json');
