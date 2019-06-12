@@ -23,7 +23,10 @@ class StoryController extends Controller
      */
     public function index()
     {
-        return view('story.index');
+        $story = Story::where('accepted', 'true')
+            ->get();
+
+        return view('story.index',compact('story'));
     }
 
     /**
@@ -97,7 +100,10 @@ class StoryController extends Controller
         if(request()->ajax()){
 
             $input = Input::get('data');
-            $story = Story::where('title', 'LIKE', '%' . $input . '%')
+            if(!isset($input)){
+                return response()->json(['status' => 'success', 'message' => '']);
+            }
+            $story = Story::where('title', 'LIKE', $input . '%')
                 ->where('accepted', 'true')
                 ->get();
             return response()->json(['status' => 'success', 'message' => $story]);

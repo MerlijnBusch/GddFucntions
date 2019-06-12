@@ -8,7 +8,7 @@
 
 @section('content_with_out_sidebar')
 
-<form id="form_persona_submit" method="post" action="{{route('moderator.persona.store')}}">
+<form id="form_persona_submit" method="post" action="{{route('moderator.persona.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group row">
         <label for="" class="col-sm-2 col-form-label">Title:</label>
@@ -20,6 +20,12 @@
         <label for="" class="col-sm-2 col-form-label">Story:</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="persona_body_form" name="persona_body_form" placeholder="Epic story..." rows="8" required></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Thumbnail image</label>
+        <div class="col-sm-10">
+            <input type="file" name="image" class="form-control" required>
         </div>
     </div>
     <input type="hidden" name="json_data_bar_charts" id="json_data_bar_charts">
@@ -91,7 +97,7 @@
         var tmpHtml = "";
         if(ArrayData.length >= 1){
             for(let i = 1; i < ArrayData.length; i++){
-                tmpHtml = tmpHtml + "<p>" + ArrayData[i].bar.barTitle + "</p>" +
+                tmpHtml = tmpHtml + "<p style='text-align: left; margin-bottom: -10px'>" + ArrayData[i].bar.barTitle + "</p>" +
                     "<div class=\"progress-bar horizontal\">" +
                     "   <div class=\"progress-track\">" +
                     "       <div class=\"progress-fill\">" +

@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{route('story.index')}}">Persona</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{route('district.index')}}">Overview</a>
+                </li>
                 @guest
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">{{ __('Login') }}</a>

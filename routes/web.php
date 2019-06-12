@@ -35,6 +35,9 @@ Route::put('/chat/request/accept/{chat}', 'ChatController@AcceptChatRequest')->n
 Route::delete('/chat/request/destroy/{chat}', 'ChatController@DestroyChatRequest')->name('chat.request.destroy');
 Route::put('/chat/message/create/{conversation_id}','ChatController@StoreChatMessage')->name('chat.message.create');
 
+Route::get('/district','DistricOverviewController@index')->name('district.index');
+Route::post('/district/ajax-request-data','DistricOverviewController@ajax_request_data')->name('district.ajax-request-data');
+
 Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (ShareableLink $link) {
     $data = $link->shareable;
     return view('story.sharedStory',compact('data'));

@@ -97,7 +97,7 @@
             for(let j = 0; j < arrayNames.length; j++){
                 let x = $( "form.metric_form" ).children();
                 if(j === 0){
-                    for(let k = 0; k < x.length; k++){
+                    for(let k = -1; k < x.length; k++){
                         if($('#' +  arrayNames[j]).length === 0){
                             let newDiv = document.createElement("div");
                             let newInput =  "<b><label for=\"" + arrayNames[j] + "\">" + arrayNames[j] + "</label></b>" +
@@ -110,6 +110,7 @@
                     }
                 }
                 if(j === 1){
+                    console.log(x.length);
                     let name = arrayNames[j - 1];
                     if($('#' + name + '_' +arrayNames[j]).length === 0){
                         let newDiv = document.createElement("div");
@@ -125,6 +126,7 @@
                     }
                 }
                 if(j > 1){
+                    console.log(x.length);
                     let currentName = "";
                     let parentName = "";
                     for (let n = j; n > -1; n--) {

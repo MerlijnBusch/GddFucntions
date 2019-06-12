@@ -30,5 +30,7 @@
             <td><h1>No data sets</h1></td>
         </tr>
     @endforelse
+
+    {{$metrics->links()}}
     </tbody>
 </table>

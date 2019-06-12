@@ -18,6 +18,7 @@ class CreateStoriesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->longText('json');
+            $table->string('path');
             $table->string('accepted')->default('false');
             $table->timestamps();
         });

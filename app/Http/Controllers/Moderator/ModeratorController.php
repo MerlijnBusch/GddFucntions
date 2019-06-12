@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Metric;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
@@ -24,7 +25,7 @@ class ModeratorController extends Controller
     public function index()
     {
 
-        $metrics = Metric::all();
+        $metrics = Metric::paginate(20);
         $story = Story::all();
         return view('moderator.dashboard.index',compact('metrics','story'));
 
@@ -95,7 +96,7 @@ class ModeratorController extends Controller
         $validated = $request->validate([
             'persona_title_form' => 'min:10|max:255|string',
             'persona_body_form' => 'min:60|max:3000|string',
-
+            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
         $validatedJson = Moderator::checkIfStringIsJson($request->input('json_data_bar_charts'));
@@ -107,10 +108,15 @@ class ModeratorController extends Controller
             return back()->withErrors(['add some charts!? other wise it doesnt look cool ;(']);
         }
 
+        $image = $request->file('image');
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploadedImages'), $new_name);
+
         $story = new Story;
         $story->title = $validated['persona_title_form'];
         $story->description = $validated['persona_body_form'];
         $story->json = $request->input('json_data_bar_charts');
+        $story->path = $new_name;
         $story->save();
 
         return back()->withMessage('Persona posted!');
@@ -137,6 +143,10 @@ class ModeratorController extends Controller
 
     public function delete_persona(Story $story)
     {
+        $image_path = public_path()."/uploadedImages/".$story->path;
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
         $story->delete();
 
         return back()->withMessage('Story successfully deleted');
