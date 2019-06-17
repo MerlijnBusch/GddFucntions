@@ -14,7 +14,9 @@
 
 @section('sidebar')
 
-
+    @if(auth()->check())
+        @include('layouts.partials.sidebarProfile')
+    @endif
 
 @endsection
 
@@ -30,34 +32,44 @@
     @include('profile.partials.chatRequest')
 
 
-    <div>
+    <div class="row">
         @forelse($conversations as $conversation)
-            persoon waarmee je chat<br>
-            {{$conversation->conversation_id}}
-            ur chatting with john doe
-            <br>
-            {{--{{dd($allMessages)}}--}}
-            @forelse($allMessages as $message)
-                @foreach($message as $text)
-                    @if($text->conversation_id_foreign === $conversation->conversation_id)
-                        {{$text->message}}
-                        <br>
-                    @endif
-                @endforeach
-            @empty
-            @endforelse
-            <form method="post" action="{{route('chat.message.create',['conversation_id' => $conversation->conversation_id])}}">
-                @csrf
-                @method('put')
-                <div class="form-group">
-                    <input type="text" class="form-control" id="chat_text_message_form" name="chat_text_message_form" placeholder="Type message..">
-                </div>
-                <button class="btn-success btn-sm float-right" type="submit">Submit</button>
-            </form>
-        @empty
+            <div class="col-6 col-md-6 col-lg-4">
+                persoon waarmee je chat<br>
+                {{$conversation->conversation_id}}
+                ur chatting with john doe
+                <br>
+                <div class="card">
+                    <div style="padding: 10px 10px 10px 10px;background-color: rgba(10,105,25,0.2)">
+                        @forelse($allMessages as $message)
+                            @foreach($message as $text)
+                                @if($text->conversation_id_foreign === $conversation->conversation_id)
+                                    <div style="overflow: hidden">
+                                        @if($text->user_id_foreign === auth()->user()->id)
+                                            <p class="text-right w-100" style="padding: 3px 3px 3px 3px"><b>{{$text->message}}</b></p>
+                                        @else
+                                            <p class="text-left w-100" style="padding: 3px 3px 3px 3px"><b>{{$text->message}}</b></p>
+                                        @endif
+                                    <br>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @empty
+                        @endforelse
+                    </div>
+                        <form method="post" action="{{route('chat.message.create',['conversation_id' => $conversation->conversation_id])}}">
+                            @csrf
+                            @method('put')
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="chat_text_message_form" name="chat_text_message_form" placeholder="Type message..">
+                            </div>
+                            <button class="btn-success btn-sm float-right" type="submit">Submit</button>
+                        </form>
+                    @empty
 
-        @endforelse
-
+                    @endforelse
+            </div>
+        </div>
     </div>
 @endsection
 

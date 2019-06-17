@@ -6,7 +6,7 @@
 
 @section('content_with_out_sidebar')
 
-       <div>
+       <div style="overflow: hidden">
            <img class="img-fluid" src="{{asset('images/home.png')}}" alt="gracht in amsterdam"
                 style="
                      margin-left: -20px;

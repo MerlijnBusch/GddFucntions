@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color:rgba(218, 223, 225, 0.95);">
+<nav class="navbar navbar-expand-lg fixed-top py-3" id="mainNav" style="background-color:rgba(0, 0, 0, 1);">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{url('/')}}">GGD</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{url('/')}}" style="color: white;">GGD</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

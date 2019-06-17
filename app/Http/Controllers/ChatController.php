@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Chat;
 use Illuminate\Http\Request;
-use App\User;
 use App\ChatMessage;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -31,8 +30,8 @@ class ChatController extends Controller
             $chat = new Chat;
             $chat->user_id_belongs_to = auth()->user()->id;
             $chat->user_id_send_towards = $input;
-            $chat->user_id_belongs_to_accepted_boolean = true; //Send the request to start chatting
-            $chat->user_id_send_towards_accepted_boolean = false; // Has to still accept
+            $chat->user_id_belongs_to_accepted_boolean = true;
+            $chat->user_id_send_towards_accepted_boolean = false;
             $chat->save();
 
             return response()->json(['status' => 'success', 'message' => 'request has been send']);
@@ -49,11 +48,9 @@ class ChatController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        //Accepted the chat
         $chat->user_id_send_towards_accepted_boolean = true;
         $chat->save();
 
-        //Create the Actual Chat connection
         DB::insert('insert into chat_conversation_message (user_id_belongs_to, user_id_send_towards, created_at) values (?, ?, ?)',
                             [$chat->user_id_belongs_to, $chat->user_id_send_towards, Carbon::now()]);
 
@@ -75,7 +72,7 @@ class ChatController extends Controller
     {
 
         $validated = $request->validate([
-            'chat_text_message_form' => 'required|min:5|max:350|string'
+            'chat_text_message_form' => 'required|min:1|max:350|string'
         ]);
 
         if(ChatMessage::validatedConversationId($id) !== true){

@@ -1,14 +1,5 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 Route::get('/', function () {
@@ -16,9 +7,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('metric', 'MetricController');
 Route::resource('story', 'StoryController');
@@ -58,3 +46,4 @@ Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_c
 Route::put('/moderator/update/cvs_to_json','Moderator\ModeratorController@update_cvs_to_json')->name('moderator.update.cvs_to_json');
 Route::delete('/moderator/destroy/metric/{metric}','Moderator\ModeratorController@destroy_metric')->name('moderator.destroy.metric');
 
+//https://bootsnipp.com/snippets/qr7AD

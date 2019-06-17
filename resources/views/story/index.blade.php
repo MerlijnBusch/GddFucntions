@@ -13,31 +13,32 @@
     <div style="padding: 15px 15px 15px 15px;overflow: hidden">
     @foreach($story as $s)
         @if($s->accepted == 'true')
-        <div class="float-left" style="margin: 3px 3px 3px 3px">
+        <a class="float-left" style="margin: 3px 3px 3px 3px" href="{{route('story.show',['story' => $s->id])}}">
             <div class="card" style="width: 350px;position: relative;
     text-align: center;">
                 <img class="img-thumbnail" style="height: 350px;width: 350px" src="{{asset('uploadedImages/'.$s->path)}}" alt="{{$s->title}}">
                 <b style="position: absolute;
     top: 70%;
     left: 50%;
-    transform: translate(-50%, -50%);">{{$s->title}}</b>
+    transform: translate(-50%, -50%);
+color: black;">{{$s->title}}</b>
             </div>
-        </div>
+        </a>
         @endif
     @endforeach
     </div>
     <br>
-    <div class="panel-body">
-        <div class="form-group">
-            <input type="text" class="form-controller" id="search_stories" name="search_stories" placeholder="Search..." style="width: 100%">
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div id="insert-stories-here">
+    {{--<div class="panel-body">--}}
+        {{--<div class="form-group">--}}
+            {{--<input type="text" class="form-controller" id="search_stories" name="search_stories" placeholder="Search..." style="width: 100%">--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="container-fluid">--}}
+        {{--<div id="insert-stories-here">--}}
 
 
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 
 @endsection
 

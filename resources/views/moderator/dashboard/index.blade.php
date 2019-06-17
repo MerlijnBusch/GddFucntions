@@ -12,11 +12,14 @@
 
 
 @section('sidebar')
-
+    @if(auth()->check())
+        @include('layouts.partials.sidebarProfile')
+    @endif
 @endsection
 
 
 @section('content')
+    <div style="background-color: white">
     <h1>Moderator</h1>
     <form method="POST" action="{{route('moderator.store.cvs_to_json')}}" id="form_cvs_to_json" enctype="multipart/form-data">
         @csrf
@@ -36,6 +39,7 @@
 
     <div style="overflow: hidden">
     @include('moderator.dashboard.partials.story')
+    </div>
     </div>
 @endsection
 

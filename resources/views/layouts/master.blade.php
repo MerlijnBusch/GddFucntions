@@ -1,11 +1,11 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="This website shows the data of the ggd data in amsterdam">
+    <meta name="keywords" content="Data,GGD,Amsterdam,Health,gezondheid,zorg,infomatie,info,data visualization">
+    <meta name="author" content="Merlijn Busch, https://github.com/24628">
     <meta name="csrf-token" content="{{csrf_token()}}" />
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -17,8 +17,17 @@
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     @yield('css')
+    <style>
+        h1, h2, h3, h4, h5. h6, p{
+            color: white;
+        }
+
+        label{
+            color: white;
+        }
+    </style>
 </head>
-<body style="background-color: white">
+<body style="background-color: black">
 {{--style="background-image: linear-gradient(to right, #f3f3f3 , #b7b7b9);"--}}
 <div class="wrapper">
 
@@ -35,7 +44,6 @@
 
         <div class="col-12 col-md-3 col-lg-3 col-xl-2">
             <div style="padding-right: 10px">
-
             @yield('sidebar')
             </div>
         </div>

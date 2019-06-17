@@ -14,7 +14,7 @@ class StoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'ajaxSearch']);
+        $this->middleware('auth')->except(['index', 'ajaxSearch','show']);
     }
     /**
      * Display a listing of the resource.
@@ -58,7 +58,7 @@ class StoryController extends Controller
      */
     public function show(Story $story)
     {
-        //
+        return view('story.single',compact('story'));
     }
 
     /**
