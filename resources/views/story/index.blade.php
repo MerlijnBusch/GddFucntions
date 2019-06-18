@@ -18,10 +18,11 @@
     text-align: center;">
                 <img class="img-thumbnail" style="height: 350px;width: 350px" src="{{asset('uploadedImages/'.$s->path)}}" alt="{{$s->title}}">
                 <b style="position: absolute;
-    top: 70%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-color: black;">{{$s->title}}</b>
+color: black;
+font-size: 2em">{{$s->title}}</b>
             </div>
         </a>
         @endif
