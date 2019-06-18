@@ -97,6 +97,8 @@ class ModeratorController extends Controller
             'persona_title_form' => 'min:10|max:255|string',
             'persona_body_form' => 'min:60|max:3000|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'second_persona_title_form' => 'min:10|max:255|string',
+            'second_persona_body_form' => 'min:30|max:3000|string',
         ]);
 
         $validatedJson = Moderator::checkIfStringIsJson($request->input('json_data_bar_charts'));
@@ -116,6 +118,8 @@ class ModeratorController extends Controller
         $story->title = $validated['persona_title_form'];
         $story->description = $validated['persona_body_form'];
         $story->json = $request->input('json_data_bar_charts');
+        $story->second_title = $validated['second_persona_title_form'];
+        $story->second_description = $validated['second_persona_body_form'];
         $story->path = $new_name;
         $story->save();
 

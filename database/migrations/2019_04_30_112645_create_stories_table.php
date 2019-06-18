@@ -17,6 +17,8 @@ class CreateStoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
+            $table->string('second_title');
+            $table->text('second_description');
             $table->longText('json');
             $table->string('path');
             $table->string('accepted')->default('false');

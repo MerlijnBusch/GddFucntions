@@ -102,9 +102,8 @@ ul, ol {
 .container-barchart {
     width: 100%;
     margin-bottom: 15px;
-    background: #272A62;
+    color: red;
     padding: 20px;
-    border: 1px solid black;
     overflow: hidden;
 }
 
@@ -117,13 +116,13 @@ ul, ol {
 .horizontal .progress-track {
     position: relative;
     width: 100%;
-    height: 20px;
+    height: 50px;
     background: #ebebeb;
 }
 
 .horizontal .progress-fill {
     position: relative;
-    background: #666;
+    background: #272A62;
     height: 20px;
     width: 50%;
     color: #fff;

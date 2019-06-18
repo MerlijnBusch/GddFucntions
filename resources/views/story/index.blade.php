@@ -9,38 +9,28 @@
 @section('jumbotron')
 
     {{--//--}}
-
-    <div style="padding: 15px 15px 15px 15px;overflow: hidden">
+    <div class="d-flex justify-content-center">
+    <div style="padding: 15px 15px 15px 15px;overflow: hidden;margin: 0 auto">
     @foreach($story as $s)
         @if($s->accepted == 'true')
-        <a class="float-left" style="margin: 3px 3px 3px 3px" href="{{route('story.show',['story' => $s->id])}}">
+        <a class="float-left" style="margin: 10px" href="{{route('story.show',['story' => $s->id])}}">
             <div class="card" style="width: 350px;position: relative;
     text-align: center;">
                 <img class="img-thumbnail" style="height: 350px;width: 350px" src="{{asset('uploadedImages/'.$s->path)}}" alt="{{$s->title}}">
-                <b style="position: absolute;
-    top: 80%;
+                <p style="position: absolute;
+                padding: 3px;
+    top: 87%;
     left: 50%;
     transform: translate(-50%, -50%);
 color: black;
-font-size: 2em">{{$s->title}}</b>
+font-size: 1.7em">{{$s->title}}</p>
             </div>
         </a>
         @endif
     @endforeach
     </div>
     <br>
-    {{--<div class="panel-body">--}}
-        {{--<div class="form-group">--}}
-            {{--<input type="text" class="form-controller" id="search_stories" name="search_stories" placeholder="Search..." style="width: 100%">--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="container-fluid">--}}
-        {{--<div id="insert-stories-here">--}}
-
-
-        {{--</div>--}}
-    {{--</div>--}}
-
+    </div>
 @endsection
 
 @section('sidebar')

@@ -14,16 +14,23 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     @yield('css')
     <style>
+        html {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
         h1, h2, h3, h4, h5. h6, p{
             color: white;
+            font-family: 'Montserrat', sans-serif !important;
         }
 
         label{
             color: white;
+            font-family: 'Montserrat', sans-serif !important;
         }
     </style>
 </head>

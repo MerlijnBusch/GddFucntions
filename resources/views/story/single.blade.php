@@ -14,27 +14,19 @@
         }
     </style>
     {{--{{dd($story)}}--}}
-    <div class="card border-left-0 border-right-0 border-top-0" style="color: white;background-color: black">
-    <b class="card-title"></b>{{$story->title}}<br>
-    <div class="row">
-        <div class='col-12 col-md-6 col-lg-8'>
-            <p class="card-body">{{$story->description}}</p>
-            <br>
-            <b>Advice</b>
-            <p>
-                is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de
-                16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar
-                husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd
-                is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de
-                16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar
-                husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd
-            </p>
-            </div>
-        <div class="col-12 col-md-6 col-lg-3">
-        <img class='img-thumbnail' style='height: 350px;width: 350px' src='{{url('/') .'/uploadedImages/'. $story->path}}'>
+    <div class="card border-left-0 border-right-0 border-top-0" style="color: white;background-color: black;">
+         <div class="row" style="background-color: #F1463E;padding: 20px; margin: 40px">
+             <div class="col-3 border-right border-white"> <b class="card-title display-4">{{$story->title}}</b></div>
+             <div class="col-9"><p class="card-body text-left" style="font-size: 22px">{{$story->description}}</p></div>
         </div>
+    <div id="persona" class="masonry">
+        <div class="item">
+            <div class="text-left">
+                <h5 style="color: black">{{$story->second_title}}</h5>
+                <p style="color: black">{{$story->second_description}}</p>
+            </div>
     </div>
-    <div id="persona" class="masonry"></div>
+    </div>
     </div>
 @endsection
 
@@ -59,11 +51,11 @@
             if(ArrayData.length >= 1){
                 for(let i = 1; i < ArrayData.length; i++){
                     console.log(ArrayData[i]);
-                    tmpHtml = tmpHtml + "<p style='text-align: left; margin-bottom: -10px'>" + ArrayData[i].bar.barTitle + "</p>" +
-                        "<div class=\"progress-bar horizontal\">" +
+                    tmpHtml = tmpHtml + "<b style='font-size:15px;text-align: left; margin-bottom: -10px;border-left: 5px solid #272A62;'>" + "&nbsp;&nbsp;" + ArrayData[i].bar.barTitle + "</b>" +
+                        "<div class=\"progress-bar horizontal\" style='margin-top: -15px; border-left: 5px solid #272A62;margin-bottom: -2px;height: 80px;'>" +
                         "   <div class=\"progress-track\">" +
-                        "       <div class=\"progress-fill\">" +
-                        "           <span>" +  ArrayData[i].bar.percentage + "%</span>" +
+                        "       <div class=\"progress-fill\" style='height:50px'>" +
+                        "           <span style='line-height: 50px;font-size: 40px'>" +  ArrayData[i].bar.percentage + "%</span>" +
                         "       </div>" +
                         "   </div>" +
                         "</div>";
@@ -72,7 +64,7 @@
             let html =
                 "<div class=\"item\">" +
                 "<div class=\"container-barchart horizontal flat\">" +
-                "<h2>" + ArrayData[0].titlePersona + "</h2>" +
+                "<h4 class='text-left'>" + ArrayData[0].titlePersona + "</h4>" +
                 tmpHtml
                 +"</div></div>";
             $("#persona").append(html);

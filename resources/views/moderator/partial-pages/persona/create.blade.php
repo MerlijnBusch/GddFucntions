@@ -28,6 +28,18 @@
             <input type="file" name="image" class="form-control" required>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Title advice:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="second_persona_title_form" name="second_persona_title_form" placeholder="Epic title..." required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">advice:</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="second_persona_body_form" name="second_persona_body_form" placeholder="Epic story..." rows="8" required></textarea>
+        </div>
+    </div>
     <input type="hidden" name="json_data_bar_charts" id="json_data_bar_charts">
     <div id="persona_chart" class="masonry">
 
