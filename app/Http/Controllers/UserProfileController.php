@@ -12,19 +12,25 @@ use Illuminate\Support\Facades\Input;
 
 class UserProfileController extends Controller
 {
+    //return user profile
     public function index(User $user)
     {
+        //check if the user is on there own profile or not
         if($user->id != auth()->user()->id){
             abort(403, 'Unauthorized action.');
         }
+
+        //get all pending chat request
         $chatRequests = Chat::CheckChatRequest();
 
+        //return all conversations who are active
         $conversations = DB::table('chat_conversation_message')
             ->where(function ($query) {
                 $query->where('user_id_belongs_to', '=', auth()->user()->id)
                     ->orWhere('user_id_send_towards', '=', auth()->user()->id);
             })->get();
 
+        //get all the message to the active chats
         $allMessages = [];
         foreach ($conversations as $q) {
             $allMessages[] = ChatMessage::all()->where('conversation_id_foreign', '=', $q->conversation_id);
@@ -35,6 +41,7 @@ class UserProfileController extends Controller
         );
     }
 
+    //find an user to start a chat request with
     public function search_user()
     {
         if(request()->ajax()){

@@ -23,10 +23,12 @@ class ChatController extends Controller
         if(request()->ajax()){
             $input = Input::get('data');
 
+            //Check if the chat already exist
             if(Chat::validatedStartChat($input) !== true){
                 return response()->json(['status' => 'fail', 'message' => 'Chat already exist']);
             }
 
+            //create a new chat and put it on pending to let the other user accept
             $chat = new Chat;
             $chat->user_id_belongs_to = auth()->user()->id;
             $chat->user_id_send_towards = $input;
@@ -34,6 +36,7 @@ class ChatController extends Controller
             $chat->user_id_send_towards_accepted_boolean = false;
             $chat->save();
 
+            //return success status json
             return response()->json(['status' => 'success', 'message' => 'request has been send']);
         } else {
             return response()->json(['status' => 'fail', 'message' => 'an error occurred']);
@@ -44,10 +47,12 @@ class ChatController extends Controller
     public function AcceptChatRequest(Chat $chat)
     {
 
+        //See if there's an pending chat request
         if($chat->user_id_send_towards != auth()->user()->id){
             abort(403, 'Unauthorized action.');
         }
 
+        //if the chat request was pending and exist we accepted it and save
         $chat->user_id_send_towards_accepted_boolean = true;
         $chat->save();
 
@@ -57,6 +62,7 @@ class ChatController extends Controller
         return back()->withMessage('Chat is Accepted');
     }
 
+    //destroy chat request
     public function DestroyChatRequest(Chat $chat)
     {
         if($chat->user_id_send_towards != auth()->user()->id){
@@ -68,17 +74,21 @@ class ChatController extends Controller
         return back()->withMessage('Chat is Deleted');
     }
 
+    //store chats
     public function StoreChatMessage(Request $request, $id)
     {
 
+        //validate the chat message
         $validated = $request->validate([
             'chat_text_message_form' => 'required|min:1|max:350|string'
         ]);
 
+        //is the text doesnt belong toward the right chat
         if(ChatMessage::validatedConversationId($id) !== true){
             abort(403, 'Unauthorized action.');
         }
 
+        //create the chat message with foreign key of accepted chat and then save the text in the database
         $chatMessage = new ChatMessage();
         $chatMessage->user_id_foreign = auth()->user()->id;
         $chatMessage->conversation_id_foreign = $id;

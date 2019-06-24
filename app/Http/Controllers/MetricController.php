@@ -13,6 +13,7 @@ class MetricController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Get all metric names doesnt work because the code that uses it is commented and we used an item frame to show data viz
     public function index()
     {
         $metrics = Metric::select('file_name', 'id')->get();

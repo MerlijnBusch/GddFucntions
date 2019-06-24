@@ -95,6 +95,7 @@ class StoryController extends Controller
 
     }
 
+    //Search function that searches in the database on ajax request
     public function ajaxSearch()
     {
         if(request()->ajax()){

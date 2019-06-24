@@ -1,5 +1,9 @@
 <?php
 
+
+//All route with ajax in the name are ajax request used for javascript
+//Resource route goes to all the route with in the controller, in your cmd use: php artisan route:list to see all resources routes
+//Auth routes are all the authenticated routes login etc
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 Route::get('/', function () {
@@ -26,6 +30,7 @@ Route::put('/chat/message/create/{conversation_id}','ChatController@StoreChatMes
 Route::get('/district','DistricOverviewController@index')->name('district.index');
 Route::post('/district/ajax-request-data','DistricOverviewController@ajax_request_data')->name('district.ajax-request-data');
 
+//The sharing function for persona's
 Route::get('shared/{shareable_link}', ['middleware' => 'shared', function (ShareableLink $link) {
     $data = $link->shareable;
     return view('story.sharedStory',compact('data'));
@@ -46,4 +51,3 @@ Route::put('/moderator/store/cvs_to_json','Moderator\ModeratorController@store_c
 Route::put('/moderator/update/cvs_to_json','Moderator\ModeratorController@update_cvs_to_json')->name('moderator.update.cvs_to_json');
 Route::delete('/moderator/destroy/metric/{metric}','Moderator\ModeratorController@destroy_metric')->name('moderator.destroy.metric');
 
-//https://bootsnipp.com/snippets/qr7AD

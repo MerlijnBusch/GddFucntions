@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Input;
 
 class DistricOverviewController extends Controller
 {
+    //Return the index page
     public function index()
     {
         return view('district.index');
     }
 
+    //return data on user input not working cuz we had to fake it for the presentation
     public function ajax_request_data()
     {
         if(request()->ajax()){
